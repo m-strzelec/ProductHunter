@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/showProductsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/pokaz_produkty" />
+
+    <Button
+        android:id="@+id/addProductButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/showProductsButton"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginEnd="128dp"
+        android:text="@string/dodaj_produkt" />
+
+</RelativeLayout>

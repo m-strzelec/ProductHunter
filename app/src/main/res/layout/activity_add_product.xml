@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/productNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="@string/nazwa_produktu"
+        android:inputType="text"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/storeNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="@string/nazwa_sklepu"
+        android:inputType="text"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/storeAddressEditText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="@string/adres_sklepu"
+        android:inputType="text|textPostalAddress" />
+
+    <EditText
+        android:id="@+id/productPriceEditText"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="@string/cena"
+        android:inputType="numberDecimal" />
+
+    <Button
+        android:id="@+id/addProductButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dodaj_produkt" />
+</LinearLayout>

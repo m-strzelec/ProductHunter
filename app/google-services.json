@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "624916795979",
+    "firebase_url": "https://producthunter-ad3fd-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "producthunter-ad3fd",
+    "storage_bucket": "producthunter-ad3fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624916795979:android:d116e23b47d6c9e400b3ce",
+        "android_client_info": {
+          "package_name": "pl.mobi.msbw.producthunter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcokiWhWTVHQdiTkWZY6wCRwAhMn_4UIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
