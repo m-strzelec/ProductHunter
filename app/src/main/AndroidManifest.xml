@@ -23,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.ProductListActivity" />
         <activity android:name=".ui.AddProductActivity" />
     </application>
 

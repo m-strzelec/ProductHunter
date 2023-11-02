@@ -7,7 +7,7 @@
     android:padding="16dp">
 
     <EditText
-        android:id="@+id/productNameEditText"
+        android:id="@+id/productNameET"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="@string/nazwa_produktu"
@@ -15,7 +15,15 @@
         android:singleLine="true" />
 
     <EditText
-        android:id="@+id/storeNameEditText"
+        android:id="@+id/productCategoryET"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="@string/kategoria"
+        android:inputType="text"
+        android:singleLine="true" />
+
+    <EditText
+        android:id="@+id/storeNameET"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="@string/nazwa_sklepu"
@@ -23,21 +31,21 @@
         android:singleLine="true" />
 
     <EditText
-        android:id="@+id/storeAddressEditText"
+        android:id="@+id/storeAddressET"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="@string/adres_sklepu"
         android:inputType="text|textPostalAddress" />
 
     <EditText
-        android:id="@+id/productPriceEditText"
+        android:id="@+id/productPriceET"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="@string/cena"
         android:inputType="numberDecimal" />
 
     <Button
-        android:id="@+id/addProductButton"
+        android:id="@+id/addProductBut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dodaj_produkt" />
