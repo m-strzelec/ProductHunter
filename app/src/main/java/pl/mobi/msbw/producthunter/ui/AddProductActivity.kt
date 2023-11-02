@@ -7,7 +7,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import pl.mobi.msbw.producthunter.R
 import pl.mobi.msbw.producthunter.firebase.FirebaseManager
-import pl.mobi.msbw.producthunter.models.Product
 
 class AddProductActivity : AppCompatActivity() {
 
@@ -28,7 +27,6 @@ class AddProductActivity : AppCompatActivity() {
         storeAddressEditText = findViewById(R.id.storeAddressET)
         productPriceEditText = findViewById(R.id.productPriceET)
         addProductButton = findViewById(R.id.addProductBut)
-
         addProductButton.setOnClickListener {
             val category = productCategoryEditText.text.toString()
             val productName = productNameEditText.text.toString()
@@ -38,10 +36,8 @@ class AddProductActivity : AppCompatActivity() {
 
             if (category.isNotEmpty() && productName.isNotEmpty() && storeName.isNotEmpty() &&
                 storeAddress.isNotEmpty() && price != null) {
-                val newProduct = Product(category = category, name = productName,
-                    storeName = storeName, storeAddress = storeAddress, price = price)
                 val firebaseManager = FirebaseManager()
-                firebaseManager.addProduct(newProduct)
+                firebaseManager.addProduct(category, productName, storeName, storeAddress, price)
                 finish() // Zamyka aktywność po dodaniu produktu
             } else {
                 // Obsługa błędnych danych

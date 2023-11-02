@@ -12,10 +12,17 @@ import pl.mobi.msbw.producthunter.models.Product
 class FirebaseManager {
     private val database: DatabaseReference = FirebaseDatabase.getInstance().reference
 
-    fun addProduct(product: Product) {
+    fun addProduct(
+        category: String,
+        productName: String,
+        storeName: String,
+        storeAddress: String,
+        price: Double
+    ) {
         val productId = database.child("products").push().key
+        val newProduct = Product(productId.toString(), category, productName, price, storeName, storeAddress)
         productId?.let {
-            database.child("products").child(it).setValue(product)
+            database.child("products").child(it).setValue(newProduct)
         }
     }
 

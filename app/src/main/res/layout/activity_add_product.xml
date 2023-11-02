@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -12,7 +11,8 @@
         android:layout_height="48dp"
         android:hint="@string/nazwa_produktu"
         android:inputType="text"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:autofillHints="productName" />
 
     <EditText
         android:id="@+id/productCategoryET"
@@ -20,7 +20,8 @@
         android:layout_height="48dp"
         android:hint="@string/kategoria"
         android:inputType="text"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:autofillHints="productCategory" />
 
     <EditText
         android:id="@+id/storeNameET"
@@ -28,21 +29,24 @@
         android:layout_height="48dp"
         android:hint="@string/nazwa_sklepu"
         android:inputType="text"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:autofillHints="storeName" />
 
     <EditText
         android:id="@+id/storeAddressET"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="@string/adres_sklepu"
-        android:inputType="text|textPostalAddress" />
+        android:inputType="text|textPostalAddress"
+        android:autofillHints="postalAddress" />
 
     <EditText
         android:id="@+id/productPriceET"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="@string/cena"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:autofillHints="price,number" />
 
     <Button
         android:id="@+id/addProductBut"
