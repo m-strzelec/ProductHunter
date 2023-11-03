@@ -13,7 +13,6 @@
         <item>Biedronka</item>
         <item>Lidl</item>
         <item>Żabka</item>
-        <item>Wszystkie sklepy</item>
     </string-array>
     <string-array name="lista_kategorii">
         <item>Nabiał</item>
@@ -21,6 +20,5 @@
         <item>Pieczywo</item>
         <item>Słodycze</item>
         <item>Woda</item>
-        <item>Wszystkie kategorie</item>
     </string-array>
 </resources>
