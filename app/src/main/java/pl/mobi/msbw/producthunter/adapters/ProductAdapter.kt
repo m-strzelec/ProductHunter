@@ -27,7 +27,7 @@ class ProductAdapter(private var products: List<Product>) : RecyclerView.Adapter
         val currentProduct = products[position]
         holder.productCategoryTextView.text = currentProduct.category
         holder.productNameTextView.text = currentProduct.name
-        holder.productPriceTextView.text = currentProduct.price.toString()
+        holder.productPriceTextView.text =  String.format("%.2f", currentProduct.price)
         holder.storeNameTextView.text = currentProduct.storeName
         holder.storeAddressTextView.text = currentProduct.storeAddress
     }

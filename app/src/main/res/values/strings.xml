@@ -9,6 +9,10 @@
     <string name="kategoria">Kategoria</string>
     <string name="search">Szukaj…</string>
     <string name="wszystkie_sklepy">Wszystkie sklepy</string>
+    <string name="cenaTV">Cena:</string>
+    <string name="jednostkaTV">zł</string>
+    <string name="przecinek">,</string>
+    <string name="tostError">Nie znaleziono produktów</string>
     <string-array name="lista_sklepow">
         <item>Biedronka</item>
         <item>Lidl</item>
@@ -21,4 +25,6 @@
         <item>Słodycze</item>
         <item>Woda</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
