@@ -40,6 +40,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         savedInstanceState: Bundle?
     ): View? {
         FirebaseApp.initializeApp(requireContext())
+        setHasOptionsMenu(true)
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         storesNamesList = resources.getStringArray(R.array.lista_sklepow)
@@ -131,23 +132,24 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.search_view_menu, menu)
+        inflater.inflate(R.menu.search_view, menu)
 
         val searchViewItem = menu.findItem(R.id.action_search)
         val searchView = searchViewItem.actionView as SearchView
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                filterProducts(query)
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                filterProducts(query.orEmpty())
                 return false
             }
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                filterProducts(newText)
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterProducts(newText.orEmpty())
                 return false
             }
         })
-        return super.onCreateOptionsMenu(menu, inflater)
+
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
     private fun filterProducts(query: String) {

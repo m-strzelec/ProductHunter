@@ -10,6 +10,6 @@
         android:icon="@drawable/ic_item_list"/>
     <item
         android:id="@+id/menuUser"
-        android:title="Settings"
+        android:title="Profile"
         android:icon="@drawable/ic_user"/>
 </menu>

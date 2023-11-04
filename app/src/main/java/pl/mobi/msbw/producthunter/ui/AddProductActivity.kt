@@ -27,6 +27,9 @@ class AddProductActivity : AppCompatActivity() {
         storeAddressEditText = findViewById(R.id.storeAddressET)
         productPriceEditText = findViewById(R.id.productPriceET)
         addProductButton = findViewById(R.id.addProductBut)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         addProductButton.setOnClickListener {
             val category = productCategoryEditText.text.toString()
             val productName = productNameEditText.text.toString()
@@ -46,4 +49,10 @@ class AddProductActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
+    }
+
 }

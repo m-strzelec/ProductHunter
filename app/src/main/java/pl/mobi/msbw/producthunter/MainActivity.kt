@@ -19,22 +19,20 @@ class MainActivity : AppCompatActivity() {
 
         setCurrentFragment(firstFragment)
 
-         bottomNavView.setOnNavigationItemSelectedListener {
+         bottomNavView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.menuHome->setCurrentFragment(firstFragment)
                 R.id.menuItemList->setCurrentFragment(secondFragment)
                 R.id.menuUser->setCurrentFragment(thirdFragment)
-
             }
             true
         }
     }
 
-    private fun setCurrentFragment(fragment: Fragment)=
+    private fun setCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.frameLayout,fragment)
+            replace(R.id.frameLayout, fragment)
             commit()
         }
-
 
 }
