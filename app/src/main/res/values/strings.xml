@@ -1,17 +1,28 @@
 <resources>
     <string name="app_name">ProductHunter</string>
-    <string name="dodaj_produkt">Dodaj Produkt</string>
+    <string name="dodaj_produkt">Dodaj produkt do bazy danych</string>
     <string name="cena">Cena</string>
-    <string name="adres_sklepu">Adres Sklepu</string>
-    <string name="nazwa_sklepu">Nazwa Sklepu</string>
-    <string name="nazwa_produktu">Nazwa Produktu</string>
-    <string name="pokaz_produkty">Pokaż Produkty</string>
+    <string name="adres_sklepu">Adres sklepu</string>
+    <string name="nazwa_sklepu">Nazwa sklepu</string>
+    <string name="nazwa_produktu">Nazwa produktu</string>
+    <string name="pokaz_produkty">Pokaż produkty</string>
     <string name="kategoria">Kategoria</string>
     <string name="search">Szukaj…</string>
     <string name="wszystkie_sklepy">Wszystkie sklepy</string>
     <string name="cenaTV">Cena:</string>
     <string name="jednostkaTV">zł</string>
     <string name="przecinek">,</string>
+    <string name="dodaj_usun_produkt">Dodaj/Usuń produkt do listy</string>
+    <string name="tytul_listy_zakupow">Twoja lista zakupów</string>
+    <string name="ustawienia">Ustawienia</string>
+    <string name="zglos_produkt">Zgłoś nieprawidłowy produkt</string>
+    <string name="zapisz_list_produktow">Zapisz obecną listę produktów</string>
+    <string name="zapisane_listy">Zapisane listy produktów</string>
+    <string name="ustawienia_konta">Ustawienia konta</string>
+    <string name="ocen_aplikacje">Oceń aplikację</string>
+    <string name="zglos_problem">Zgłoś problem</string>
+    <string name="powiadomienia">Powiadomienia</string>
+    <string name="wyloguj">Wyloguj się</string>
     <string-array name="lista_sklepow">
         <item>Biedronka</item>
         <item>Lidl</item>

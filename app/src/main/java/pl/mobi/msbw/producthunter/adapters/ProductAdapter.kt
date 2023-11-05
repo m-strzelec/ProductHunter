@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import pl.mobi.msbw.producthunter.R
 import pl.mobi.msbw.producthunter.models.Product
 
-class ProductAdapter(private var products: List<Product>) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter(private var products: List<Product>, var choosenCardType: Int) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val productCategoryTextView: TextView = itemView.findViewById(R.id.productCategoryTV)
@@ -19,7 +19,13 @@ class ProductAdapter(private var products: List<Product>) : RecyclerView.Adapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.activity_product_list, parent, false)
+        val inflater = LayoutInflater.from(parent.context)
+        val layoutId = if (choosenCardType == 0) {
+            R.layout.activity_product_list
+        } else {
+            R.layout.item_list_preview
+        }
+        val itemView = inflater.inflate(layoutId, parent, false)
         return ProductViewHolder(itemView)
     }
 

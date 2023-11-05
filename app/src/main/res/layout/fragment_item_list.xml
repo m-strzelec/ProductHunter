@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FEF6FE"
     tools:context=".ItemListFragment">
 
     <TextView
         android:id="@+id/fragmentItemList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Lista zakupów" />
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="cursive"
+        android:text="@string/tytul_listy_zakupow"
+        android:textAlignment="center"
+        android:textColor="#FFCFEE"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/productRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragmentItemList"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp" />
+
+</RelativeLayout>

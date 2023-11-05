@@ -54,7 +54,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         val productRV = view.findViewById<RecyclerView>(R.id.productRecyclerView)
         productRV.layoutManager = LinearLayoutManager(requireContext())
-        productAdapter = ProductAdapter(emptyList())
+        productAdapter = ProductAdapter(emptyList(), 0)
         productRV.adapter = productAdapter
 
         val firebaseManager = FirebaseManager()

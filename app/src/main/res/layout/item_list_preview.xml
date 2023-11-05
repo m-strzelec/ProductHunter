@@ -17,22 +17,13 @@
         android:background="#FFEEF9">
 
         <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/productNameTV"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_toEndOf="@+id/productPriceTV"
-            android:text="@string/jednostkaTV" />
-
-        <TextView
             android:id="@+id/productNameTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@+id/checkBox"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -103,16 +94,12 @@
             android:layout_toEndOf="@+id/storeNameTV"
             android:text="@string/przecinek" />
 
-        <Button
-            android:id="@+id/buttonAddToCart"
+        <CheckBox
+            android:id="@+id/checkBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/storeNameTV"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:minHeight="20dip"
-            android:text="@string/dodaj_usun_produkt"
-            android:textSize="12sp" />
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp" />
 
     </RelativeLayout>
 

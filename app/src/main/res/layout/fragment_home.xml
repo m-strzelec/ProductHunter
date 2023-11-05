@@ -58,7 +58,9 @@
             android:layout_weight="1"
             android:focusable="false"
             android:inputType="none"
-            android:paddingHorizontal="8dp" />
+            android:paddingHorizontal="8dp"
+            android:textSize="18sp"
+            android:textStyle="normal"  />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.recyclerview.widget.RecyclerView
