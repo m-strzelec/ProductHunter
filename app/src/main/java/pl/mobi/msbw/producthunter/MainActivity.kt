@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
         setCurrentFragment(firstFragment)
 
-         bottomNavView.setOnItemSelectedListener {
+        bottomNavView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.menuHome->setCurrentFragment(firstFragment)
                 R.id.menuItemList->setCurrentFragment(secondFragment)

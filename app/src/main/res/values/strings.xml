@@ -12,7 +12,7 @@
     <string name="cenaTV">Cena:</string>
     <string name="jednostkaTV">zł</string>
     <string name="przecinek">,</string>
-    <string name="dodaj_usun_produkt">Dodaj/Usuń produkt do listy</string>
+    <string name="dodaj_do_listy">Dodaj do listy zakupów</string>
     <string name="tytul_listy_zakupow">Twoja lista zakupów</string>
     <string name="ustawienia">Ustawienia</string>
     <string name="zglos_produkt">Zgłoś nieprawidłowy produkt</string>
@@ -23,6 +23,7 @@
     <string name="zglos_problem">Zgłoś problem</string>
     <string name="powiadomienia">Powiadomienia</string>
     <string name="wyloguj">Wyloguj się</string>
+    <string name="usun_produkt_z_listy">Usuń produkt z listy</string>
     <string-array name="lista_sklepow">
         <item>Biedronka</item>
         <item>Lidl</item>

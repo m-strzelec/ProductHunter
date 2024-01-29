@@ -7,6 +7,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import pl.mobi.msbw.producthunter.models.FirebaseShoppingList
 import pl.mobi.msbw.producthunter.models.Product
 
 class FirebaseManager {
@@ -44,5 +45,17 @@ class FirebaseManager {
                 Log.w(TAG, "Failed to read data.", error.toException())
             }
         })
+    }
+
+    fun saveProductList(listName: String, productIds: List<String>) {
+        val firebaseShoppingList = FirebaseShoppingList(listName, productIds)
+        database.child("shoppingLists").child(listName).setValue(firebaseShoppingList)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("FirebaseManager", "Lista produktów została zapisana pomyślnie")
+                } else {
+                    Log.e("FirebaseManager", "Błąd podczas zapisywania listy produktów", task.exception)
+                }
+            }
     }
 }

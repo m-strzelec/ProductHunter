@@ -111,11 +111,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:minHeight="20dip"
-            android:text="@string/dodaj_usun_produkt"
+            android:text="@string/dodaj_do_listy"
             android:textSize="12sp" />
-
     </RelativeLayout>
-
-
 </androidx.cardview.widget.CardView>
 
