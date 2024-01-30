@@ -17,9 +17,7 @@ import pl.mobi.msbw.producthunter.viewmodels.ProductViewModel
 class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemClickListener {
 
     private lateinit var productViewModel: ProductViewModel
-    private lateinit var recyclerView: RecyclerView
     private lateinit var productAdapter: ProductAdapter
-    private lateinit var productsList: List<Product>
     private lateinit var storesNamesList: Array<String>
     private lateinit var selectedStoresList: BooleanArray
 
@@ -41,7 +39,7 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemCli
 
         productViewModel = ViewModelProvider(requireActivity())[ProductViewModel::class.java]
         productViewModel.products.observe(viewLifecycleOwner) { products ->
-            onShoppingListLoaded(products)
+            productAdapter.updateItems(products)
         }
 
         return view
@@ -50,10 +48,6 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemCli
     override fun onDeleteProductClick(product: Product) {
         productViewModel.removeProduct(product)
         Toast.makeText(requireContext(), "Usunięto z listy zakupów: ${product.name}", Toast.LENGTH_SHORT).show()
-    }
-
-    private fun onShoppingListLoaded(shoppingList: List<Product>) {
-        productAdapter.updateItems(shoppingList)
     }
 
 }

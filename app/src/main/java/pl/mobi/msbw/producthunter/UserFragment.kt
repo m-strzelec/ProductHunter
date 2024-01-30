@@ -3,9 +3,11 @@ package pl.mobi.msbw.producthunter
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -70,14 +72,43 @@ class UserFragment : Fragment(R.layout.fragment_user) {
     }
 
     private fun showLoadListDialog() {
-//        val dialogBuilder = AlertDialog.Builder(requireContext())
-//        dialogBuilder.setTitle("Nazwa Listy")
-//        ArrayAdapter(
-//            requireContext(),
-//            android.R.layout.simple_spinner_dropdown_item
-//            selectedItemsList
-//        )
+        val builder: AlertDialog.Builder = AlertDialog.Builder(requireActivity())
+        builder.setTitle("Wybierz listę do wczytania")
+
+        val shoppingLists = mutableListOf<String>()
+        val firebaseManager = FirebaseManager()
+
+        firebaseManager.getShoppingListsNames { lists ->
+            shoppingLists.addAll(lists)
+
+            if (shoppingLists.isNotEmpty()) {
+                val inflater = requireActivity().layoutInflater
+                val dialogLayout = inflater.inflate(R.layout.dialog_load_list, null)
+
+                val spinner: Spinner = dialogLayout.findViewById(R.id.spinner)
+                val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, shoppingLists)
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinner.adapter = adapter
+
+                builder.setView(dialogLayout)
+                builder.setCancelable(false)
+                builder.setPositiveButton("Wczytaj") { _, _ ->
+                    val selectedListName = spinner.selectedItem as String
+                    firebaseManager.getShoppingListProducts(selectedListName) { productIds ->
+                        firebaseManager.getProductsByIds(productIds) { products ->
+                            productViewModel.setProducts(products)
+                        }
+                    }
+                    Toast.makeText(requireContext(), "Lista produktów została wczytana", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                builder.setMessage("Brak dostępnych list zakupów")
+            }
+            builder.setNegativeButton("Anuluj", null)
+            builder.show()
+        }
     }
+
 
     private fun saveProductListToFirebase(listName: String, productIds: List<String>) {
         val firebaseManager = FirebaseManager()
