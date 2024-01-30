@@ -9,12 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.FirebaseApp
 import pl.mobi.msbw.producthunter.adapters.OnProductItemClickListener
 import pl.mobi.msbw.producthunter.adapters.ProductAdapter
-import pl.mobi.msbw.producthunter.firebase.FirebaseManager
 import pl.mobi.msbw.producthunter.models.Product
-import pl.mobi.msbw.producthunter.viewmodel.ProductViewModel
+import pl.mobi.msbw.producthunter.viewmodels.ProductViewModel
 
 class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemClickListener {
 

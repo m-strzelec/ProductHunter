@@ -26,7 +26,8 @@
             android:layout_toStartOf="@+id/deleteButton"
             android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:contentDescription="@string/nazwa_produktu" />
 
         <TextView
             android:id="@+id/productCategoryTV"
@@ -36,7 +37,8 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:drawablePadding="2dp"
-            android:minWidth="10dp" />
+            android:minWidth="10dp"
+            android:contentDescription="@string/kategoria" />
 
         <TextView
             android:id="@+id/productPriceTV"
@@ -48,7 +50,8 @@
             android:layout_marginEnd="0dp"
             android:layout_toEndOf="@+id/textView"
             android:drawablePadding="2dp"
-            android:minWidth="10dp" />
+            android:minWidth="10dp"
+            android:contentDescription="@string/cena" />
 
         <TextView
             android:id="@+id/storeNameTV"
@@ -59,7 +62,8 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
             android:drawablePadding="2dp"
-            android:minWidth="10dp" />
+            android:minWidth="10dp"
+            android:contentDescription="@string/nazwa_sklepu" />
 
         <TextView
             android:id="@+id/storeAddressTV"
@@ -70,7 +74,8 @@
             android:layout_marginBottom="10dp"
             android:layout_toEndOf="@+id/textView3"
             android:drawablePadding="2dp"
-            android:minWidth="100dp" />
+            android:minWidth="100dp"
+            android:contentDescription="@string/adres_sklepu" />
 
         <TextView
             android:id="@+id/textView"

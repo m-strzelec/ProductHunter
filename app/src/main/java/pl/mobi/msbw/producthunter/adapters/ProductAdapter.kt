@@ -6,20 +6,30 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import pl.mobi.msbw.producthunter.R
 import pl.mobi.msbw.producthunter.models.Product
-
-interface OnProductItemClickListener {
-    fun onAddToProductListClick(product: Product) {}
-    fun onDeleteProductClick(product: Product) {}
-}
 
 class ProductAdapter(
     private var products: List<Product>,
     private var choosenCardType: Int,
     private val onProductItemClickListener: OnProductItemClickListener? = null
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+
+    class ProductDiffCallback(
+        private val oldList: List<Product>,
+        private val newList: List<Product>
+    ) : DiffUtil.Callback() {
+        override fun getOldListSize(): Int = oldList.size
+        override fun getNewListSize(): Int = newList.size
+        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition].id == newList[newItemPosition].id
+        }
+        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+            return oldList[oldItemPosition] == newList[newItemPosition]
+        }
+    }
 
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val productCategoryTextView: TextView = itemView.findViewById(R.id.productCategoryTV)
@@ -56,10 +66,13 @@ class ProductAdapter(
     }
 
     fun updateItems(newProducts: List<Product>) {
+        val diffCallback = ProductDiffCallback(products, newProducts)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+
         products = newProducts
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
-    
+
     override fun getItemCount(): Int {
         return products.size
     }

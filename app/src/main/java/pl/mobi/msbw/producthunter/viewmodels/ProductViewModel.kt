@@ -1,4 +1,4 @@
-package pl.mobi.msbw.producthunter.viewmodel
+package pl.mobi.msbw.producthunter.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

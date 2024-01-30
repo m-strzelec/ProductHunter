@@ -15,17 +15,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.FirebaseApp
 import pl.mobi.msbw.producthunter.adapters.OnProductItemClickListener
 import pl.mobi.msbw.producthunter.adapters.ProductAdapter
 import pl.mobi.msbw.producthunter.firebase.FirebaseManager
 import pl.mobi.msbw.producthunter.models.Product
-import pl.mobi.msbw.producthunter.viewmodel.ProductViewModel
+import pl.mobi.msbw.producthunter.viewmodels.ProductViewModel
 
 class HomeFragment : Fragment(R.layout.fragment_home), OnProductItemClickListener {
 
     private lateinit var productAdapter: ProductAdapter
-    private lateinit var productsList: List<Product>
     private lateinit var storesNamesList: Array<String>
     private lateinit var selectedStoresList: BooleanArray
     private lateinit var categoriesNamesList: Array<String>
@@ -34,8 +34,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnProductItemClickListene
     private val chosenStoresIndexList = ArrayList<Int>()
     private val chosenCategoriesIndexList = ArrayList<Int>()
 
+    private var productsLoaded = false
+    private var productsList: List<Product> = emptyList()
+
     private lateinit var storeAutoCompleteTV: AutoCompleteTextView
     private lateinit var categoryAutoCompleteTV: AutoCompleteTextView
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     private lateinit var productViewModel: ProductViewModel
 
@@ -62,9 +66,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnProductItemClickListene
         productAdapter = ProductAdapter(emptyList(), 0, this)
         productRV.adapter = productAdapter
 
-        val firebaseManager = FirebaseManager()
-        firebaseManager.searchProductByName("", ::onProductsLoaded)
-
         setAutoCompleteTextView(storeAutoCompleteTV, storesNamesList, selectedStoresList, chosenStoresIndexList)
         setAutoCompleteTextView(categoryAutoCompleteTV, categoriesNamesList, selectedCategoriesList, chosenCategoriesIndexList)
 
@@ -73,15 +74,38 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnProductItemClickListene
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val firebaseManager = FirebaseManager()
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout)
+
+        if (!productsLoaded) {
+            firebaseManager.searchProductByName("", ::onFirebaseLoaded)
+            productsLoaded = true
+        }
+        else {
+            onProductsLoaded(productsList)
+        }
+
+        swipeRefreshLayout.setOnRefreshListener {
+            firebaseManager.searchProductByName("", ::onFirebaseLoaded)
+            swipeRefreshLayout.isRefreshing = false
+        }
+    }
+
     override fun onAddToProductListClick(product: Product) {
         productViewModel.addProduct(product)
         Toast.makeText(requireContext(), "Dodano do listy zakupów: ${product.name}", Toast.LENGTH_SHORT).show()
     }
 
+    private fun onFirebaseLoaded(products: List<Product>) {
+        productAdapter.updateItems(products)
+        productsList = products
+    }
     private fun onProductsLoaded(products: List<Product>) {
         productAdapter.updateItems(products)
         //productViewModel.setProducts(products)
-        productsList = products
+        //productsList = products
     }
 
     private fun setAutoCompleteTextView(
