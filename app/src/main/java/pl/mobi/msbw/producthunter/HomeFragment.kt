@@ -99,13 +99,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnProductItemClickListene
     }
 
     private fun onFirebaseLoaded(products: List<Product>) {
-        productAdapter.updateItems(products)
+        onProductsLoaded(products)
+        productViewModel.setLoadedProducts(products)
         productsList = products
     }
     private fun onProductsLoaded(products: List<Product>) {
         productAdapter.updateItems(products)
-        //productViewModel.setProducts(products)
-        //productsList = products
     }
 
     private fun setAutoCompleteTextView(

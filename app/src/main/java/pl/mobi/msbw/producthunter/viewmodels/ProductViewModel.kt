@@ -7,7 +7,9 @@ import pl.mobi.msbw.producthunter.models.Product
 
 class ProductViewModel : ViewModel() {
     private val _products = MutableLiveData<List<Product>>()
+    private val _loadedProducts = MutableLiveData<List<Product>>()
     val products: LiveData<List<Product>> get() = _products
+    val loadedProducts: LiveData<List<Product>> get() = _loadedProducts
 
     init {
         _products.value = mutableListOf()
@@ -15,6 +17,10 @@ class ProductViewModel : ViewModel() {
 
     fun setProducts(newProducts: List<Product>) {
         _products.value = newProducts
+    }
+
+    fun setLoadedProducts(products: List<Product>) {
+        _loadedProducts.value = products
     }
 
     fun addProduct(product: Product) {
@@ -28,4 +34,5 @@ class ProductViewModel : ViewModel() {
         currentList.remove(product)
         _products.value = currentList
     }
+
 }

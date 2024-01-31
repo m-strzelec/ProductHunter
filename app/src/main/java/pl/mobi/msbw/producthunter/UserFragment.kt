@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import pl.mobi.msbw.producthunter.firebase.FirebaseManager
+import pl.mobi.msbw.producthunter.models.Product
 import pl.mobi.msbw.producthunter.ui.AddProductActivity
 import pl.mobi.msbw.producthunter.viewmodels.ProductViewModel
 
@@ -95,9 +96,11 @@ class UserFragment : Fragment(R.layout.fragment_user) {
                 builder.setPositiveButton("Wczytaj") { _, _ ->
                     val selectedListName = spinner.selectedItem as String
                     firebaseManager.getShoppingListProducts(selectedListName) { productIds ->
-                        firebaseManager.getProductsByIds(productIds) { products ->
-                            productViewModel.setProducts(products)
+                        val homeProducts = productViewModel.loadedProducts.value.orEmpty()
+                        val foundProducts: List<Product> = homeProducts.filter { product ->
+                            product.id in productIds
                         }
+                        productViewModel.setProducts(foundProducts)
                     }
                     Toast.makeText(requireContext(), "Lista produktów została wczytana", Toast.LENGTH_SHORT).show()
                 }
