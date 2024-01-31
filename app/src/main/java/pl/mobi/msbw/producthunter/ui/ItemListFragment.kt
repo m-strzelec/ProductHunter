@@ -1,4 +1,4 @@
-package pl.mobi.msbw.producthunter
+package pl.mobi.msbw.producthunter.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import pl.mobi.msbw.producthunter.R
 import pl.mobi.msbw.producthunter.adapters.OnProductItemClickListener
 import pl.mobi.msbw.producthunter.adapters.ProductAdapter
 import pl.mobi.msbw.producthunter.models.Product

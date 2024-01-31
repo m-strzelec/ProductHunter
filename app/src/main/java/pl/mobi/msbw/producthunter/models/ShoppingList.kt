@@ -1,6 +1,6 @@
 package pl.mobi.msbw.producthunter.models
 
-data class FirebaseShoppingList(
+data class ShoppingList(
     val listName: String,
     val productIds: List<String>
 )

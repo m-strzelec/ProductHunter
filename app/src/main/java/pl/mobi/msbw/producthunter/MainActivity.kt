@@ -4,6 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import pl.mobi.msbw.producthunter.ui.HomeFragment
+import pl.mobi.msbw.producthunter.ui.ItemListFragment
+import pl.mobi.msbw.producthunter.ui.UserFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var bottomNavView: BottomNavigationView
@@ -12,9 +15,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val firstFragment=HomeFragment()
-        val secondFragment=ItemListFragment()
-        val thirdFragment=UserFragment()
+        val firstFragment= HomeFragment()
+        val secondFragment= ItemListFragment()
+        val thirdFragment= UserFragment()
         bottomNavView = findViewById(R.id.bottomNavView)
 
         setCurrentFragment(firstFragment)

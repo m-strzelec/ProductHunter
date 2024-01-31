@@ -26,7 +26,7 @@
         <activity android:name=".ui.AddProductActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".UserFragment" />
+                android:value=".ui.UserFragment" />
         </activity>
     </application>
 

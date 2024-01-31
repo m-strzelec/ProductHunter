@@ -1,4 +1,4 @@
-package pl.mobi.msbw.producthunter
+package pl.mobi.msbw.producthunter.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.FirebaseApp
+import pl.mobi.msbw.producthunter.R
 import pl.mobi.msbw.producthunter.adapters.OnProductItemClickListener
 import pl.mobi.msbw.producthunter.adapters.ProductAdapter
 import pl.mobi.msbw.producthunter.firebase.FirebaseManager

@@ -7,7 +7,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import pl.mobi.msbw.producthunter.models.FirebaseShoppingList
+import pl.mobi.msbw.producthunter.models.ShoppingList
 import pl.mobi.msbw.producthunter.models.Product
 
 class FirebaseManager {
@@ -103,8 +103,8 @@ class FirebaseManager {
 
 
     fun saveProductList(listName: String, productIds: List<String>) {
-        val firebaseShoppingList = FirebaseShoppingList(listName, productIds)
-        database.child("shoppingLists").child(listName).setValue(firebaseShoppingList)
+        val shoppingList = ShoppingList(listName, productIds)
+        database.child("shoppingLists").child(listName).setValue(shoppingList)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "Lista produktów została zapisana pomyślnie")
