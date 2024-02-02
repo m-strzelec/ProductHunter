@@ -13,7 +13,7 @@ import pl.mobi.msbw.producthunter.models.Product
 
 class ProductAdapter(
     private var products: List<Product>,
-    private var choosenCardType: Int,
+    private var chosenCardType: Int,
     private val onProductItemClickListener: OnProductItemClickListener? = null
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
@@ -41,7 +41,7 @@ class ProductAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val layoutId = if (choosenCardType == 0) {
+        val layoutId = if (chosenCardType == 0) {
             R.layout.activity_product_list
         } else {
             R.layout.item_list_preview
@@ -57,11 +57,18 @@ class ProductAdapter(
         holder.productPriceTextView.text =  String.format("%.2f", currentProduct.price)
         holder.storeNameTextView.text = currentProduct.storeName
         holder.storeAddressTextView.text = currentProduct.storeAddress
+        holder.itemView.findViewById<TextView?>(R.id.productQuantityTV)?.text = currentProduct.quantity.toString()
         holder.itemView.findViewById<Button?>(R.id.buttonAddToCart)?.setOnClickListener {
             onProductItemClickListener?.onAddToProductListClick(currentProduct)
         }
         holder.itemView.findViewById<ImageButton?>(R.id.deleteButton)?.setOnClickListener {
             onProductItemClickListener?.onDeleteProductClick(currentProduct)
+        }
+        holder.itemView.findViewById<ImageButton?>(R.id.quantityPlus)?.setOnClickListener {
+            onProductItemClickListener?.onQuantityIncrementClick(currentProduct, position)
+        }
+        holder.itemView.findViewById<ImageButton?>(R.id.quantityMinus)?.setOnClickListener {
+            onProductItemClickListener?.onQuantityDecrementClick(currentProduct, position)
         }
     }
 

@@ -9,6 +9,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import pl.mobi.msbw.producthunter.models.ShoppingList
 import pl.mobi.msbw.producthunter.models.Product
+import pl.mobi.msbw.producthunter.models.ShoppingListItem
 
 class FirebaseManager {
     private val database: DatabaseReference = FirebaseDatabase.getInstance().reference
@@ -21,7 +22,7 @@ class FirebaseManager {
         price: Double
     ) {
         val productId = database.child("products").push().key
-        val newProduct = Product(productId.toString(), category, productName, price, storeName, storeAddress)
+        val newProduct = Product(productId.toString(), category, productName, price, 1, storeName, storeAddress)
         productId?.let {
             database.child("products").child(it).setValue(newProduct)
         }
@@ -61,18 +62,19 @@ class FirebaseManager {
         })
     }
 
-    fun getShoppingListProducts(name: String, callback: (List<String>) -> Unit) {
-        val query = database.child("shoppingLists").child(name).child("productIds")
+    fun getShoppingListProducts(name: String, callback: (Map<String, Int>) -> Unit) {
+        val query = database.child("shoppingLists").child(name).child("products")
         query.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val productIds = mutableListOf<String>()
+                val productsWithQuantity = mutableMapOf<String, Int>()
                 for (productSnapshot in snapshot.children) {
-                    val productId = productSnapshot.value as? String
+                    val productId = productSnapshot.key
+                    val quantity = (productSnapshot.value as? Long)?.toInt() ?: 0
                     productId?.let {
-                        productIds.add(it)
+                        productsWithQuantity[it] = quantity
                     }
                 }
-                callback(productIds)
+                callback(productsWithQuantity)
             }
             override fun onCancelled(error: DatabaseError) {
                 Log.w(TAG, "Błąd podczas odczytu produktów z listy $name", error.toException())
@@ -102,9 +104,13 @@ class FirebaseManager {
     }
 
 
-    fun saveProductList(listName: String, productIds: List<String>) {
-        val shoppingList = ShoppingList(listName, productIds)
-        database.child("shoppingLists").child(listName).setValue(shoppingList)
+    fun saveProductList(listName: String, products: List<ShoppingListItem>) {
+        val shoppingList = ShoppingList(listName, products)
+        val shoppingListMap: Map<String, Any> = mapOf(
+            "listName" to shoppingList.listName,
+            "products" to shoppingList.products.associateBy({ it.productId }, { it.quantity })
+        )
+        database.child("shoppingLists").child(listName).setValue(shoppingListMap)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "Lista produktów została zapisana pomyślnie")
@@ -113,4 +119,5 @@ class FirebaseManager {
                 }
             }
     }
+
 }

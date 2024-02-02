@@ -51,4 +51,14 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemCli
         Toast.makeText(requireContext(), "Usunięto z listy zakupów: ${product.name}", Toast.LENGTH_SHORT).show()
     }
 
+    override fun onQuantityIncrementClick(product: Product, position: Int) {
+        productViewModel.incrementQuantity(product, position)
+    }
+
+    override fun onQuantityDecrementClick(product: Product, position: Int) {
+        if (product.quantity > 1) {
+            productViewModel.decrementQuantity(product, position)
+        }
+    }
+
 }

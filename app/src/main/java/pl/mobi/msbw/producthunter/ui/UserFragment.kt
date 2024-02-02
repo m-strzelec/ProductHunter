@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import pl.mobi.msbw.producthunter.R
 import pl.mobi.msbw.producthunter.firebase.FirebaseManager
 import pl.mobi.msbw.producthunter.models.Product
+import pl.mobi.msbw.producthunter.models.ShoppingListItem
 import pl.mobi.msbw.producthunter.viewmodels.ProductViewModel
 
 class UserFragment : Fragment(R.layout.fragment_user) {
@@ -60,8 +61,10 @@ class UserFragment : Fragment(R.layout.fragment_user) {
             val listName = input.text.toString()
             val productList = productViewModel.products.value ?: emptyList()
             if (listName.isNotEmpty() && productList.isNotEmpty()) {
-                val productIds = productList.map { it.id }
-                saveProductListToFirebase(listName, productIds)
+                val shoppingListItems = productList.map { product ->
+                    ShoppingListItem(product.id, product.quantity) // Przykładowa ilość, dostosuj do swoich potrzeb
+                }
+                saveProductListToFirebase(listName, shoppingListItems)
             } else {
                 Toast.makeText(requireContext(), "Lista jest pusta lub nie podano jej nazwy", Toast.LENGTH_SHORT).show()
             }
@@ -95,12 +98,24 @@ class UserFragment : Fragment(R.layout.fragment_user) {
                 builder.setCancelable(false)
                 builder.setPositiveButton("Wczytaj") { _, _ ->
                     val selectedListName = spinner.selectedItem as String
-                    firebaseManager.getShoppingListProducts(selectedListName) { productIds ->
+                    firebaseManager.getShoppingListProducts(selectedListName) { productsWithQuantity ->
                         val homeProducts = productViewModel.loadedProducts.value.orEmpty()
                         val foundProducts: List<Product> = homeProducts.filter { product ->
-                            product.id in productIds
+                            product.id in productsWithQuantity.keys
                         }
-                        productViewModel.setProducts(foundProducts)
+                        val updatedProducts = foundProducts.map { product ->
+                            val quantity = productsWithQuantity[product.id] ?: 0
+                            Product(
+                                product.id,
+                                product.category,
+                                product.name,
+                                product.price,
+                                quantity,
+                                product.storeName,
+                                product.storeAddress
+                            )
+                        }
+                        productViewModel.setProducts(updatedProducts)
                     }
                     Toast.makeText(requireContext(), "Lista produktów została wczytana", Toast.LENGTH_SHORT).show()
                 }
@@ -113,9 +128,9 @@ class UserFragment : Fragment(R.layout.fragment_user) {
     }
 
 
-    private fun saveProductListToFirebase(listName: String, productIds: List<String>) {
+    private fun saveProductListToFirebase(listName: String, itemList: List<ShoppingListItem>) {
         val firebaseManager = FirebaseManager()
-        firebaseManager.saveProductList(listName, productIds)
+        firebaseManager.saveProductList(listName, itemList)
         Toast.makeText(requireContext(), "Lista produktów została zapisana", Toast.LENGTH_SHORT).show()
     }
 }

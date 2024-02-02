@@ -95,8 +95,20 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnProductItemClickListene
     }
 
     override fun onAddToProductListClick(product: Product) {
-        productViewModel.addProduct(product)
-        Toast.makeText(requireContext(), "Dodano do listy zakupów: ${product.name}", Toast.LENGTH_SHORT).show()
+        if (productViewModel.addProduct(product)) {
+            Toast.makeText(
+                requireContext(),
+                "Dodano do listy zakupów: ${product.name}",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        else {
+            Toast.makeText(
+                requireContext(),
+                "Produkt ${product.name} już istnieje na liście zakupów",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     private fun onFirebaseLoaded(products: List<Product>) {
