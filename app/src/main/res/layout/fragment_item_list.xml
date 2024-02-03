@@ -70,7 +70,9 @@
         android:layout_alignStart="@+id/storeTextInputLayout"
         android:layout_marginStart="0dp"
         android:layout_marginTop="10dp"
-        android:textSize="14sp"
+        android:textSize="25sp"
+        android:fontFamily="cursive"
+        android:textStyle="bold"
         android:text="@string/calkowity_koszt" />
 
     <TextView
@@ -81,7 +83,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/itemCostTV"
-        android:textSize="14sp"
+        android:textSize="20sp"
         android:minWidth="10dp" />
 
 </RelativeLayout>

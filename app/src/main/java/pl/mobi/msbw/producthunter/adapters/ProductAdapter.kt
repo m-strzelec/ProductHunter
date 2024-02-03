@@ -65,10 +65,10 @@ class ProductAdapter(
             onProductItemClickListener?.onDeleteProductClick(currentProduct)
         }
         holder.itemView.findViewById<ImageButton?>(R.id.quantityPlus)?.setOnClickListener {
-            onProductItemClickListener?.onQuantityIncrementClick(currentProduct, position)
+            onProductItemClickListener?.onQuantityIncrementClick(currentProduct)
         }
         holder.itemView.findViewById<ImageButton?>(R.id.quantityMinus)?.setOnClickListener {
-            onProductItemClickListener?.onQuantityDecrementClick(currentProduct, position)
+            onProductItemClickListener?.onQuantityDecrementClick(currentProduct)
         }
     }
 

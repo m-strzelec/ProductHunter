@@ -41,16 +41,22 @@ class ProductViewModel : ViewModel() {
         _products.value = currentList
     }
 
-    fun incrementQuantity(product: Product, position: Int) {
+    fun incrementQuantity(product: Product) {
         val currentList = _products.value?.toMutableList() ?: mutableListOf()
         val updatedProduct = product.copy(quantity = product.quantity + 1)
-        currentList[position] = updatedProduct
-        _products.value = currentList
+        val position = currentList.indexOfFirst { it.id == product.id }
+        if (position != -1) {
+            currentList[position] = updatedProduct
+            _products.value = currentList
+        }
     }
-    fun decrementQuantity(product: Product, position: Int) {
+    fun decrementQuantity(product: Product) {
         val currentList = _products.value?.toMutableList() ?: mutableListOf()
         val updatedProduct = product.copy(quantity = product.quantity - 1)
-        currentList[position] = updatedProduct
-        _products.value = currentList
+        val position = currentList.indexOfFirst { it.id == product.id }
+        if (position != -1) {
+            currentList[position] = updatedProduct
+            _products.value = currentList
+        }
     }
 }
