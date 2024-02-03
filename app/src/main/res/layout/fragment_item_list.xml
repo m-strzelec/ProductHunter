@@ -49,7 +49,8 @@
             android:paddingHorizontal="8dp"
             android:textColorHint="#4416C5"
             android:textSize="16sp"
-            android:textStyle="normal"/>
+            android:textStyle="normal"
+            android:contentDescription="@string/wybierz_sklep"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -70,9 +71,7 @@
         android:layout_alignStart="@+id/storeTextInputLayout"
         android:layout_marginStart="0dp"
         android:layout_marginTop="10dp"
-        android:textSize="25sp"
-        android:fontFamily="cursive"
-        android:textStyle="bold"
+        android:textSize="18sp"
         android:text="@string/calkowity_koszt" />
 
     <TextView
@@ -83,7 +82,20 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/itemCostTV"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:minWidth="10dp" />
+
+    <TextView
+        android:id="@+id/zloty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/itemCostTV"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/viewItemCost"
+        android:contentDescription="@string/zl"
+        android:minWidth="10dp"
+        android:text="@string/jednostkaTV"
+        android:textSize="18sp" />
 
 </RelativeLayout>

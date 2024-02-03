@@ -96,7 +96,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
 
                 builder.setView(dialogLayout)
                 builder.setCancelable(false)
-                builder.setPositiveButton("Wczytaj") { _, _ ->
+                builder.setPositiveButton("Potwierdź") { _, _ ->
                     val selectedListName = spinner.selectedItem as String
                     firebaseManager.getShoppingListProducts(selectedListName) { productsWithQuantity ->
                         val homeProducts = productViewModel.loadedProducts.value.orEmpty()

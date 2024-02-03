@@ -13,19 +13,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="145dp"
         android:background="#FFEEF9">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/productNameTV"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:layout_toEndOf="@+id/productPriceTV"
-            android:text="@string/jednostkaTV"
-            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/productNameTV"
@@ -50,10 +39,23 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/productCategoryTV"
+            android:layout_alignStart="@+id/productCategoryTV"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="5dp"
+            android:contentDescription="@string/cena"
+            android:text="@string/cenaTV"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/productPriceTV"
             android:layout_width="wrap_content"
-            android:layout_height="18dp"
-            android:layout_below="@+id/productNameTV"
+            android:layout_height="19dp"
+            android:layout_alignTop="@+id/textView"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
@@ -63,22 +65,38 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/productPriceTV"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/productPriceTV"
+            android:text="@string/jednostkaTV"
+            android:contentDescription="@string/zl"
+            android:textSize="14sp" />
+
+        <TextView
             android:id="@+id/storeNameTV"
             android:layout_width="wrap_content"
             android:layout_height="18dp"
-            android:layout_below="@+id/productCategoryTV"
-            android:layout_marginStart="10dp"
+            android:layout_below="@+id/textView"
+            android:layout_alignStart="@+id/textView"
+            android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
             android:drawablePadding="2dp"
             android:minWidth="10dp"
             android:textSize="14sp" />
 
+
         <TextView
             android:id="@+id/storeAddressTV"
             android:layout_width="wrap_content"
             android:layout_height="18dp"
-            android:layout_below="@+id/productCategoryTV"
+            android:layout_alignTop="@+id/textView3"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:layout_toEndOf="@+id/textView3"
@@ -87,22 +105,10 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/productNameTV"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="5dp"
-            android:layout_toEndOf="@+id/productCategoryTV"
-            android:text="@string/cenaTV"
-            android:textSize="14sp" />
-
-        <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/productCategoryTV"
+            android:layout_alignTop="@+id/storeNameTV"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="5dp"

@@ -33,7 +33,8 @@
             android:inputType="none"
             android:paddingHorizontal="8dp"
             android:textSize="16sp"
-            android:textStyle="normal" />
+            android:textStyle="normal"
+            android:contentDescription="@string/wybierz_sklep"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,7 +62,8 @@
             android:inputType="none"
             android:paddingHorizontal="8dp"
             android:textSize="16sp"
-            android:textStyle="normal"  />
+            android:textStyle="normal"
+            android:contentDescription="@string/wybierz_kategorie"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -70,7 +72,7 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/categoryTextInputLayout"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="5dp">
 
         <androidx.recyclerview.widget.RecyclerView

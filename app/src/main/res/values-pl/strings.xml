@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="nazwa_produktu">Nazwa produktu</string>
     <string name="adres_sklepu">Adres sklepu</string>
@@ -10,10 +11,8 @@
     <string name="dodaj_do_listy">Dodaj do listy zakupów</string>
     <string name="przecinek">,</string>
     <string name="wybierz_kategorie">Wybierz kategorię</string>
-    <string name="wybierz_sklep">Wybierz nazwę sklepu</string>
     <string name="kategoria">Kategoria</string>
     <string name="nazwa_sklepu">Nazwa sklepu</string>
-    <string name="app_name" translatable="false">ProductHunter</string>
     <string name="ilosc">Ilość produktów</string>
     <string name="mniejP">Zmniejsz ilość produktów o jeden</string>
     <string name="wiecejP">Zwiększ ilość produktów o jeden</string>
@@ -21,12 +20,12 @@
     <string name="szukaj">Szukaj…</string>
     <string name="wszystkie_sklepy">Wszystkie sklepy</string>
     <string name="iloscTV">Ilość:</string>
-    <string name="calkowity_koszt">Łąóczna cena:</string>
+    <string name="calkowity_koszt">Łączna cena:</string>
     <string name="tytul_listy_zakupow">Twoja lista zakupów</string>
     <string name="ustawienia">Ustawienia</string>
     <string name="zglos_produkt">Zgłoś nieprawidłowy produkt</string>
     <string name="zapisz_list_produktow">Zapisz obecną listę produktów</string>
-    <string name="zapisane_listy">Wczytaj listę produktów</string>
+    <string name="zapisane_listy">Załaduj listę produktów</string>
     <string name="ustawienia_konta">Ustawienia konta</string>
     <string name="ocen_aplikacje">Oceń aplikację</string>
     <string name="zglos_problem">Zgłoś problem</string>
@@ -35,21 +34,5 @@
     <string name="usun_produkt_z_listy">Usuń produkt z listy</string>
     <string name="profil">Profil</string>
     <string name="lista_zakupow">Lista zakupów</string>
-    <string name="home" translatable="false">Home</string>
-
-
-
-
-    <string-array name="lista_sklepow">
-        <item>Biedronka</item>
-        <item>Lidl</item>
-        <item>Żabka</item>
-    </string-array>
-    <string-array name="lista_kategorii">
-        <item>Nabiał</item>
-        <item>Owoce</item>
-        <item>Pieczywo</item>
-        <item>Słodycze</item>
-        <item>Woda</item>
-    </string-array>
+    <string name="wybierz_sklep">Wybierz nazwę sklepu</string>
 </resources>

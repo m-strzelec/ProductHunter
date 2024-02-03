@@ -13,7 +13,7 @@
         android:hint="@string/nazwa_produktu"
         android:inputType="text"
         android:singleLine="true"
-        android:autofillHints="productName" />
+        android:autofillHints="productName"/>
 
     <EditText
         android:id="@+id/productCategoryET"
@@ -22,7 +22,7 @@
         android:hint="@string/kategoria"
         android:inputType="text"
         android:singleLine="true"
-        android:autofillHints="productCategory" />
+        android:autofillHints="productCategory"/>
 
     <EditText
         android:id="@+id/storeNameET"
@@ -31,7 +31,7 @@
         android:hint="@string/nazwa_sklepu"
         android:inputType="text"
         android:singleLine="true"
-        android:autofillHints="storeName" />
+        android:autofillHints="storeName"/>
 
     <EditText
         android:id="@+id/storeAddressET"
@@ -39,13 +39,13 @@
         android:layout_height="48dp"
         android:hint="@string/adres_sklepu"
         android:inputType="text|textPostalAddress"
-        android:autofillHints="postalAddress" />
+        android:autofillHints="postalAddress"/>
 
     <EditText
         android:id="@+id/productPriceET"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:hint="@string/cena"
+        android:hint="@string/cena_produtku"
         android:inputType="numberDecimal"
         android:autofillHints="price,number" />
 

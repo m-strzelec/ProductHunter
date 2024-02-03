@@ -94,7 +94,7 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemCli
             val initialSelectedItems = selectedItems.copyOf(selectedItems.size)
             val initialSelectedItemsList = ArrayList(selectedItemsList)
             val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle("Wybierz ${autoCompleteTextView.hint}")
+            builder.setTitle("${autoCompleteTextView.contentDescription}")
             builder.setCancelable(false)
             builder.setMultiChoiceItems(
                 items,
