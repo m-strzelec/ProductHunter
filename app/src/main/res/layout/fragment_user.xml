@@ -21,7 +21,7 @@
         android:fontFamily="cursive"
         android:text="@string/ustawienia"
         android:textAlignment="center"
-        android:textColor="#FFCFEE"
+        android:textColor="#FFA7E0"
         android:textSize="30sp"
         android:textStyle="bold" />
 

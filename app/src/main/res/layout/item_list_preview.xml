@@ -27,6 +27,7 @@
             android:layout_toEndOf="@+id/quantityMinus"
             android:contentDescription="@string/cena"
             android:drawablePadding="2dp"
+            android:textSize="14sp"
             android:minWidth="10dp" />
 
         <TextView
@@ -37,6 +38,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="17dp"
+            android:textSize="14sp"
             android:text="@string/iloscTV" />
 
         <TextView
@@ -61,6 +63,7 @@
             android:layout_marginEnd="10dp"
             android:contentDescription="@string/kategoria"
             android:drawablePadding="2dp"
+            android:textSize="14sp"
             android:minWidth="10dp" />
 
         <TextView
@@ -74,6 +77,7 @@
             android:layout_toEndOf="@+id/textView"
             android:contentDescription="@string/ilosc"
             android:drawablePadding="2dp"
+            android:textSize="14sp"
             android:minWidth="10dp" />
 
         <TextView
@@ -86,6 +90,7 @@
             android:layout_marginEnd="0dp"
             android:contentDescription="@string/nazwa_sklepu"
             android:drawablePadding="2dp"
+            android:textSize="14sp"
             android:minWidth="10dp" />
 
         <TextView
@@ -100,6 +105,7 @@
             android:layout_toEndOf="@+id/textView3"
             android:contentDescription="@string/adres_sklepu"
             android:drawablePadding="2dp"
+            android:textSize="14sp"
             android:minWidth="100dp" />
 
         <TextView
@@ -110,6 +116,7 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/productCategoryTV"
+            android:textSize="14sp"
             android:text="@string/cenaTV" />
 
         <TextView
@@ -120,6 +127,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/storeNameTV"
+            android:textSize="14sp"
             android:text="@string/przecinek" />
 
         <ImageButton
@@ -144,7 +152,8 @@
             android:layout_toEndOf="@+id/iloscTV"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             app:srcCompat="@android:drawable/ic_menu_more"
-            android:text="@string/mniejP"/>
+            android:text="@string/mniejP"
+            android:contentDescription="@string/minusItem" />
 
         <ImageButton
             android:id="@+id/quantityPlus"
@@ -157,7 +166,8 @@
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:rotation="180"
             app:srcCompat="@android:drawable/ic_menu_more"
-            android:text="@string/wiecejP"/>
+            android:text="@string/wiecejP"
+            android:contentDescription="@string/plusItem" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

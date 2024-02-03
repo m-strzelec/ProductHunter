@@ -14,7 +14,10 @@
     <string name="wszystkie_sklepy">Wszystkie sklepy</string>
     <string name="cenaTV">Cena:</string>
     <string name="iloscTV">Ilość:</string>
+    <string name="calkowity_koszt">Łączna cena:</string>
     <string name="jednostkaTV">zł</string>
+    <string name="minusItem">Przycisk do zmniejszenia ilości o jeden</string>
+    <string name="plusItem">Przycisk do zwiększenia ilości o jeden</string>
     <string name="przecinek">,</string>
     <string name="dodaj_do_listy">Dodaj do listy zakupów</string>
     <string name="tytul_listy_zakupow">Twoja lista zakupów</string>
