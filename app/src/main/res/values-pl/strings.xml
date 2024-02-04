@@ -13,6 +13,7 @@
     <string name="wybierz_kategorie">Wybierz kategorię</string>
     <string name="kategoria">Kategoria</string>
     <string name="nazwa_sklepu">Nazwa sklepu</string>
+    <string name="app_name">Łowca Produktów</string>
     <string name="ilosc">Ilość produktów</string>
     <string name="mniejP">Zmniejsz ilość produktów o jeden</string>
     <string name="wiecejP">Zwiększ ilość produktów o jeden</string>
