@@ -37,7 +37,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="17dp"
-            android:text="@string/iloscTV"
+            android:text="@string/quantity_TV"
             android:textSize="14sp" />
 
         <TextView
@@ -86,7 +86,7 @@
             android:layout_marginEnd="0dp"
             android:layout_toEndOf="@+id/productPriceTV"
             android:contentDescription="@string/zl"
-            android:text="@string/jednostkaTV"
+            android:text="@string/currency_TV"
             android:drawablePadding="2dp"
             android:minWidth="10dp"
             android:textSize="14sp" />
@@ -125,9 +125,9 @@
             android:layout_marginStart="25dp"
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/productCategoryTV"
-            android:text="@string/cenaTV"
+            android:text="@string/prize_TV"
             android:textSize="14sp"
-            android:contentDescription="@string/cena"/>
+            android:contentDescription="@string/prize"/>
 
         <TextView
             android:id="@+id/textView3"
@@ -137,7 +137,7 @@
             android:layout_marginStart="2dp"
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/storeNameTV"
-            android:text="@string/przecinek"
+            android:text="@string/comma"
             android:textSize="14sp" />
 
         <ImageButton
@@ -147,7 +147,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="0dp"
             android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/usun_produkt_z_listy"
+            android:contentDescription="@string/shoplist_product_delete_TV"
             android:foreground="?android:attr/selectableItemBackground"
             android:padding="8dp"
             app:srcCompat="@android:drawable/ic_delete" />
@@ -161,8 +161,8 @@
             android:layout_marginTop="-16dp"
             android:layout_toEndOf="@+id/iloscTV"
             android:background="?android:attr/selectableItemBackgroundBorderless"
-            android:text="@string/mniejP"
-            android:contentDescription="@string/mniejP"
+            android:text="@string/list_product_decrement"
+            android:contentDescription="@string/list_product_decrement"
             app:srcCompat="@android:drawable/ic_menu_more" />
 
         <ImageButton
@@ -175,8 +175,8 @@
             android:layout_toEndOf="@+id/productQuantityTV"
             android:background="?android:attr/selectableItemBackgroundBorderless"
             android:rotation="180"
-            android:text="@string/wiecejP"
-            android:contentDescription="@string/wiecejP"
+            android:text="@string/list_product_increment"
+            android:contentDescription="@string/list_product_increment"
             app:srcCompat="@android:drawable/ic_menu_more" />
     </RelativeLayout>
 

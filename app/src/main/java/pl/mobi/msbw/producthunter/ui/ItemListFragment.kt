@@ -39,7 +39,7 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemCli
         setHasOptionsMenu(true)
         val view = inflater.inflate(R.layout.fragment_item_list, container, false)
 
-        storesNamesList = resources.getStringArray(R.array.lista_sklepow)
+        storesNamesList = resources.getStringArray(R.array.shop_name_list)
         selectedStoresList = BooleanArray(storesNamesList.size)
         storeAutoCompleteTV = view.findViewById(R.id.storeAutoCompleteTV)
 
@@ -63,7 +63,8 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemCli
 
     override fun onDeleteProductClick(product: Product) {
         productViewModel.removeProduct(product)
-        Toast.makeText(requireContext(), "Usunięto z listy zakupów: ${product.name}", Toast.LENGTH_SHORT).show()
+        val a = getString(R.string.shoplist_delete_product)
+        Toast.makeText(requireContext(), "$a ${product.name}", Toast.LENGTH_SHORT).show()
     }
 
     override fun onQuantityIncrementClick(product: Product) {
@@ -107,7 +108,7 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemCli
                     selectedItemsList.remove(i)
                 }
             }
-            builder.setPositiveButton("OK") { _, _ ->
+            builder.setPositiveButton(getString(R.string.ok)) { _, _ ->
                 val stringBuilder = StringBuilder()
                 for (j in 0 until selectedItemsList.size) {
                     stringBuilder.append(items[selectedItemsList[j]])
@@ -118,12 +119,12 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemCli
                 autoCompleteTextView.setText(stringBuilder.toString())
                 filterProducts()
             }
-            builder.setNegativeButton("Anuluj") { _, _ ->
+            builder.setNegativeButton(getString(R.string.cancel)) { _, _ ->
                 System.arraycopy(initialSelectedItems, 0, selectedItems, 0, initialSelectedItems.size)
                 selectedItemsList.clear()
                 selectedItemsList.addAll(initialSelectedItemsList)
             }
-            builder.setNeutralButton("Wyczyść") { _, _ ->
+            builder.setNeutralButton(getString(R.string.clear)) { _, _ ->
                 for (j in selectedItems.indices) {
                     selectedItems[j] = false
                 }
@@ -143,7 +144,8 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemCli
         productAdapter.updateItems(filteredProducts)
         calculatePrice(filteredProducts)
         if (filteredProducts.isEmpty()) {
-            Toast.makeText(requireContext(), "Nie znaleziono produktów", Toast.LENGTH_LONG).show()
+            val a = getString(R.string.products_not_found_err)
+            Toast.makeText(requireContext(), a, Toast.LENGTH_LONG).show()
         }
     }
 

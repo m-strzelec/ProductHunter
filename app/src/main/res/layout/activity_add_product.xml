@@ -10,7 +10,7 @@
         android:id="@+id/productNameET"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:hint="@string/nazwa_produktu"
+        android:hint="@string/product_name"
         android:inputType="text"
         android:singleLine="true"
         android:autofillHints="productName"/>
@@ -19,7 +19,7 @@
         android:id="@+id/productCategoryET"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:hint="@string/kategoria"
+        android:hint="@string/category"
         android:inputType="text"
         android:singleLine="true"
         android:autofillHints="productCategory"/>
@@ -28,7 +28,7 @@
         android:id="@+id/storeNameET"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:hint="@string/nazwa_sklepu"
+        android:hint="@string/shop_name"
         android:inputType="text"
         android:singleLine="true"
         android:autofillHints="storeName"/>
@@ -37,7 +37,7 @@
         android:id="@+id/storeAddressET"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:hint="@string/adres_sklepu"
+        android:hint="@string/shop_address"
         android:inputType="text|textPostalAddress"
         android:autofillHints="postalAddress"/>
 
@@ -45,7 +45,7 @@
         android:id="@+id/productPriceET"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:hint="@string/cena_produtku"
+        android:hint="@string/product_prize"
         android:inputType="numberDecimal"
         android:autofillHints="price,number" />
 
@@ -55,5 +55,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
-        android:text="@string/dodaj_produkt" />
+        android:text="@string/product_add" />
 </LinearLayout>

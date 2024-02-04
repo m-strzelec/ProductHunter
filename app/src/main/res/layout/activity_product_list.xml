@@ -47,8 +47,8 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="5dp"
-            android:contentDescription="@string/cena"
-            android:text="@string/cenaTV"
+            android:contentDescription="@string/prize"
+            android:text="@string/prize_TV"
             android:textSize="14sp" />
 
         <TextView
@@ -72,7 +72,7 @@
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:layout_toEndOf="@+id/productPriceTV"
-            android:text="@string/jednostkaTV"
+            android:text="@string/currency_TV"
             android:contentDescription="@string/zl"
             android:textSize="14sp" />
 
@@ -113,7 +113,7 @@
             android:layout_marginTop="0dp"
             android:layout_marginEnd="5dp"
             android:layout_toEndOf="@+id/storeNameTV"
-            android:text="@string/przecinek"
+            android:text="@string/comma"
             android:textSize="14sp" />
 
         <Button
@@ -124,7 +124,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:minHeight="48dp"
-            android:text="@string/dodaj_do_listy"
+            android:text="@string/list_append"
             android:textSize="16sp" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

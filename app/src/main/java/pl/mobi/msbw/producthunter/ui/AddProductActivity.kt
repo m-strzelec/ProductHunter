@@ -44,7 +44,8 @@ class AddProductActivity : AppCompatActivity() {
                 finish() // Zamyka aktywność po dodaniu produktu
             } else {
                 // Obsługa błędnych danych
-                Toast.makeText(this, "Proszę wypełnić wszystkie pola prawidłowo.",
+                val a = getString(R.string.product_add_err)
+                Toast.makeText(this, a,
                     Toast.LENGTH_SHORT).show()
             }
         }

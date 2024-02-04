@@ -46,7 +46,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
 
     private fun showSaveListDialog() {
         val dialogBuilder = AlertDialog.Builder(requireContext())
-        dialogBuilder.setTitle("Nazwa Listy")
+        dialogBuilder.setTitle(getString(R.string.shoplist_name))
 
         val input = EditText(requireContext())
         val lp = LinearLayout.LayoutParams(
@@ -57,7 +57,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
 
         dialogBuilder.setView(input)
         dialogBuilder.setCancelable(false)
-        dialogBuilder.setPositiveButton("Zapisz") { _, _ ->
+        dialogBuilder.setPositiveButton(getString(R.string.save)) { _, _ ->
             val listName = input.text.toString()
             val productList = productViewModel.products.value ?: emptyList()
             if (listName.isNotEmpty() && productList.isNotEmpty()) {
@@ -66,10 +66,11 @@ class UserFragment : Fragment(R.layout.fragment_user) {
                 }
                 saveProductListToFirebase(listName, shoppingListItems)
             } else {
-                Toast.makeText(requireContext(), "Lista jest pusta lub nie podano jej nazwy", Toast.LENGTH_SHORT).show()
+                val a = getString(R.string.shoplist_filter_name_err)
+                Toast.makeText(requireContext(), a, Toast.LENGTH_SHORT).show()
             }
         }
-        dialogBuilder.setNegativeButton("Anuluj", null)
+        dialogBuilder.setNegativeButton(getString(R.string.cancel), null)
 
         val dialog = dialogBuilder.create()
         dialog.show()
@@ -77,7 +78,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
 
     private fun showLoadListDialog() {
         val builder: AlertDialog.Builder = AlertDialog.Builder(requireActivity())
-        builder.setTitle("Wybierz listę do wczytania")
+        builder.setTitle(getString(R.string.shoplist_choose))
 
         val shoppingLists = mutableListOf<String>()
         val firebaseManager = FirebaseManager()
@@ -96,7 +97,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
 
                 builder.setView(dialogLayout)
                 builder.setCancelable(false)
-                builder.setPositiveButton("Potwierdź") { _, _ ->
+                builder.setPositiveButton(getString(R.string.confirm)) { _, _ ->
                     val selectedListName = spinner.selectedItem as String
                     firebaseManager.getShoppingListProducts(selectedListName) { productsWithQuantity ->
                         val homeProducts = productViewModel.loadedProducts.value.orEmpty()
@@ -117,12 +118,13 @@ class UserFragment : Fragment(R.layout.fragment_user) {
                         }
                         productViewModel.setProducts(updatedProducts)
                     }
-                    Toast.makeText(requireContext(), "Lista produktów została wczytana", Toast.LENGTH_SHORT).show()
+                    val a = getString(R.string.shoplist_loaded)
+                    Toast.makeText(requireContext(), a, Toast.LENGTH_SHORT).show()
                 }
             } else {
-                builder.setMessage("Brak dostępnych list zakupów")
+                builder.setMessage(getString(R.string.shoplist_none))
             }
-            builder.setNegativeButton("Anuluj", null)
+            builder.setNegativeButton(getString(R.string.cancel), null)
             builder.show()
         }
     }
@@ -131,6 +133,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
     private fun saveProductListToFirebase(listName: String, itemList: List<ShoppingListItem>) {
         val firebaseManager = FirebaseManager()
         firebaseManager.saveProductList(listName, itemList)
-        Toast.makeText(requireContext(), "Lista produktów została zapisana", Toast.LENGTH_SHORT).show()
+        val a = getString(R.string.shoplist_save)
+        Toast.makeText(requireContext(), a, Toast.LENGTH_SHORT).show()
     }
 }

@@ -53,10 +53,10 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnProductItemClickListene
         setHasOptionsMenu(true)
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        storesNamesList = resources.getStringArray(R.array.lista_sklepow)
+        storesNamesList = resources.getStringArray(R.array.shop_name_list)
         selectedStoresList = BooleanArray(storesNamesList.size)
 
-        categoriesNamesList = resources.getStringArray(R.array.lista_kategorii)
+        categoriesNamesList = resources.getStringArray(R.array.category_name_list)
         selectedCategoriesList = BooleanArray(categoriesNamesList.size)
 
         storeAutoCompleteTV = view.findViewById(R.id.storeAutoCompleteTV)
@@ -96,16 +96,18 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnProductItemClickListene
 
     override fun onAddToProductListClick(product: Product) {
         if (productViewModel.addProduct(product)) {
+            val a = getString(R.string.shoplist_product_add)
             Toast.makeText(
                 requireContext(),
-                "Dodano do listy zakupów: ${product.name}",
+                "$a ${product.name}",
                 Toast.LENGTH_SHORT
             ).show()
         }
         else {
+            val a = getString(R.string.shoplist_product_add_err)
             Toast.makeText(
                 requireContext(),
-                "Produkt ${product.name} już istnieje na liście zakupów",
+                "${product.name} $a",
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -151,7 +153,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnProductItemClickListene
                     selectedItemsList.remove(i)
                 }
             }
-            builder.setPositiveButton("OK") { _, _ ->
+            builder.setPositiveButton(getString(R.string.ok)) { _, _ ->
                 val stringBuilder = StringBuilder()
                 for (j in 0 until selectedItemsList.size) {
                     stringBuilder.append(items[selectedItemsList[j]])
@@ -162,12 +164,12 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnProductItemClickListene
                 autoCompleteTextView.setText(stringBuilder.toString())
                 filterProducts("")
             }
-            builder.setNegativeButton("Anuluj") { _, _ ->
+            builder.setNegativeButton(getString(R.string.cancel)) { _, _ ->
                 System.arraycopy(initialSelectedItems, 0, selectedItems, 0, initialSelectedItems.size)
                 selectedItemsList.clear()
                 selectedItemsList.addAll(initialSelectedItemsList)
             }
-            builder.setNeutralButton("Wyczyść") { _, _ ->
+            builder.setNeutralButton(getString(R.string.clear)) { _, _ ->
                 for (j in selectedItems.indices) {
                     selectedItems[j] = false
                 }
@@ -211,7 +213,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnProductItemClickListene
 
         productAdapter.updateItems(filteredProducts)
         if (filteredProducts.isEmpty()) {
-            Toast.makeText(requireContext(), "Nie znaleziono produktów", Toast.LENGTH_LONG).show()
+            val a = getString(R.string.products_not_found_err)
+            Toast.makeText(requireContext(), a, Toast.LENGTH_LONG).show()
         }
     }
 

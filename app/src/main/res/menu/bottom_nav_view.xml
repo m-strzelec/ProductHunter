@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/menuItemList"
-        android:title="@string/lista_zakupow"
+        android:title="@string/shoplist_name_TV2"
         android:icon="@drawable/ic_item_list"/>
     <item
         android:id="@+id/menuUser"

@@ -18,7 +18,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:hint="@string/nazwa_sklepu"
+        android:hint="@string/shop_name"
         app:boxStrokeColor="@color/box_stroke"
         app:boxStrokeWidth="2dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
             android:paddingHorizontal="8dp"
             android:textSize="16sp"
             android:textStyle="normal"
-            android:contentDescription="@string/wybierz_sklep"/>
+            android:contentDescription="@string/shop_choose"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -47,7 +47,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:hint="@string/kategoria"
+        android:hint="@string/category"
         app:boxStrokeColor="@color/box_stroke"
         app:boxStrokeWidth="2dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,7 @@
             android:paddingHorizontal="8dp"
             android:textSize="16sp"
             android:textStyle="normal"
-            android:contentDescription="@string/wybierz_kategorie"/>
+            android:contentDescription="@string/category_choose"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

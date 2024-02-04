@@ -1,12 +1,14 @@
 package pl.mobi.msbw.producthunter.firebase
 
 import android.content.ContentValues.TAG
+import android.content.res.Resources
 import android.util.Log
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import pl.mobi.msbw.producthunter.R
 import pl.mobi.msbw.producthunter.models.ShoppingList
 import pl.mobi.msbw.producthunter.models.Product
 import pl.mobi.msbw.producthunter.models.ShoppingListItem
@@ -42,7 +44,8 @@ class FirebaseManager {
                 callback(products)
             }
             override fun onCancelled(error: DatabaseError) {
-                Log.w(TAG, "Błąd podczas pobierania produktów z Firebase", error.toException())
+                val a : String = Resources.getSystem().getString(R.string.firebase_files_err)
+                Log.w(TAG, a, error.toException())
             }
         })
     }
@@ -57,7 +60,8 @@ class FirebaseManager {
                 callback(listsNames)
             }
             override fun onCancelled(error: DatabaseError) {
-                Log.w(TAG, "Błąd podczas odczytu list produktów z Firebase", error.toException())
+                val a : String = Resources.getSystem().getString(R.string.firebase_shoplist_err)
+                Log.w(TAG, a, error.toException())
             }
         })
     }
@@ -77,7 +81,8 @@ class FirebaseManager {
                 callback(productsWithQuantity)
             }
             override fun onCancelled(error: DatabaseError) {
-                Log.w(TAG, "Błąd podczas odczytu produktów z listy $name", error.toException())
+                val a : String = Resources.getSystem().getString(R.string.shoplist_product_load_err)
+                Log.w(TAG, "$a $name", error.toException())
             }
         })
     }
@@ -97,7 +102,8 @@ class FirebaseManager {
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {
-                    Log.w(TAG, "Błąd podczas odczytu produktu o ID $productId", error.toException())
+                    val a : String = Resources.getSystem().getString(R.string.product_read_err)
+                    Log.w(TAG, "$a $productId", error.toException())
                 }
             })
         }
@@ -113,9 +119,11 @@ class FirebaseManager {
         database.child("shoppingLists").child(listName).setValue(shoppingListMap)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d(TAG, "Lista produktów została zapisana pomyślnie")
+                    val a : String = Resources.getSystem().getString(R.string.shoplist_save)
+                    Log.d(TAG, a)
                 } else {
-                    Log.e(TAG, "Błąd podczas zapisywania listy produktów", task.exception)
+                    val a : String = Resources.getSystem().getString(R.string.shoplist_save_err)
+                    Log.e(TAG, a, task.exception)
                 }
             }
     }
