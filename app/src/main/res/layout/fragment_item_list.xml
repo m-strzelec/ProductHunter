@@ -44,13 +44,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:contentDescription="@string/wybierz_sklep"
             android:focusable="false"
             android:inputType="none"
             android:paddingHorizontal="8dp"
             android:textColorHint="#4416C5"
             android:textSize="16sp"
             android:textStyle="normal"
-            android:contentDescription="@string/wybierz_sklep"/>
+            tools:ignore="EditableContentDescCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,44 +59,51 @@
         android:id="@+id/productRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="595dp"
-        android:layout_below="@+id/itemCostTV"
+        android:layout_below="@+id/costLayout"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp" />
 
-    <TextView
-        android:id="@+id/itemCostTV"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/costLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/storeTextInputLayout"
-        android:layout_alignStart="@+id/storeTextInputLayout"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="10dp"
-        android:textSize="18sp"
-        android:text="@string/calkowity_koszt" />
+        android:layout_marginTop="10dp">
 
-    <TextView
-        android:id="@+id/viewItemCost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/itemCostTV"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/itemCostTV"
-        android:textSize="18sp"
-        android:minWidth="10dp" />
+        <TextView
+            android:id="@+id/itemCostTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/calkowity_koszt"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/zloty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/itemCostTV"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/viewItemCost"
-        android:contentDescription="@string/zl"
-        android:minWidth="10dp"
-        android:text="@string/jednostkaTV"
-        android:textSize="18sp" />
+        <TextView
+            android:id="@+id/viewItemCost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/itemCostTV"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/itemCostTV"
+            android:minWidth="10dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/zloty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/itemCostTV"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/viewItemCost"
+            android:contentDescription="@string/zl"
+            android:minWidth="10dp"
+            android:text="@string/jednostkaTV"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
 
 </RelativeLayout>
