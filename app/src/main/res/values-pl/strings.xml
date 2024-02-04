@@ -36,12 +36,7 @@
     <string name="profil">Profil</string>
     <string name="shoplist_name_TV2">Lista zakupów</string>
     <string name="shop_choose">Wybierz nazwę sklepu</string>
-    <string name="firebase_files_err">Błąd podczas pobierania produktów z Firebase</string>
-    <string name="firebase_shoplist_err">Błąd podczas odczytu list produktów z Firebase</string>
-    <string name="shoplist_product_load_err">Błąd podczas odczytu produktów z listy</string>
-    <string name="product_read_err">Błąd podczas odczytu produktu o ID</string>
     <string name="shoplist_save">Lista produktów została zapisana pomyślnie</string>
-    <string name="shoplist_save_err">Błąd podczas zapisywania listy produktów</string>
     <string name="product_add_err">Proszę wypełnić wszystkie pola prawidłowo</string>
     <string name="shoplist_product_add">Dodano do listy zakupów:</string>
     <string name="shoplist_product_add_err">jest już dodany do listy</string>
@@ -50,10 +45,11 @@
     <string name="clear">Wyczyść</string>
     <string name="products_not_found_err">Nie znaleziono produktów</string>
     <string name="shoplist_delete_product">Usunięto z listy zakupów:</string>
-    <string name="shoplist_name">Nazwa listy</string>
+    <string name="shoplist_name">Zapisz listę zakupów</string>
     <string name="save">Zapisz</string>
     <string name="shoplist_filter_name_err">Lista jest pusta lub nie podano jej nazwy</string>
     <string name="shoplist_choose">Wybierz listę do wczytania</string>
     <string name="shoplist_loaded">Lista produktów została wczytana</string>
     <string name="shoplist_none">Brak dostępnych list zakupów</string>
+    <string name="enter_name">Wprowadź nazwę listy</string>
 </resources>

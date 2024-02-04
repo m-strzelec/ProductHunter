@@ -52,12 +52,7 @@
         <item>Słodycze</item>
         <item>Woda</item>
     </string-array>
-    <string name="firebase_files_err">Error loading files from Firebase</string>
-    <string name="firebase_shoplist_err">Error loafing shopping list</string>
-    <string name="shoplist_product_load_err">Error loading products from list</string>
-    <string name="product_read_err">Error reading product with ID</string>
     <string name="shoplist_save">Shopping list saved successfully</string>
-    <string name="shoplist_save_err">Error saving shopping list</string>
     <string name="product_add_err">Please fill all forms correctlly</string>
     <string name="shoplist_product_add">Product added to shopping list:</string>
     <string name="shoplist_product_add_err">is already on the list</string>
@@ -67,10 +62,11 @@
     <string name="clear">Clear</string>
     <string name="products_not_found_err">Products not found</string>
     <string name="shoplist_delete_product">Deleted from shopping list:</string>
-    <string name="shoplist_name">List name</string>
+    <string name="shoplist_name">Save shopping list</string>
     <string name="save">Save</string>
     <string name="shoplist_filter_name_err">List is empty or the name was not provided</string>
     <string name="shoplist_choose">Choose list to load</string>
     <string name="shoplist_loaded">Shopping list successfully loaded</string>
     <string name="shoplist_none">No available shopping list</string>
+    <string name="enter_name">Enter list name</string>
 </resources>

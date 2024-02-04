@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -45,24 +44,22 @@ class UserFragment : Fragment(R.layout.fragment_user) {
     }
 
     private fun showSaveListDialog() {
-        val dialogBuilder = AlertDialog.Builder(requireContext())
-        dialogBuilder.setTitle(getString(R.string.shoplist_name))
+        val builder: AlertDialog.Builder = AlertDialog.Builder(requireActivity())
+        builder.setTitle(getString(R.string.shoplist_name))
 
-        val input = EditText(requireContext())
-        val lp = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.MATCH_PARENT
-        )
-        input.layoutParams = lp
+        val inflater = requireActivity().layoutInflater
+        val dialogLayout = inflater.inflate(R.layout.dialog_save_list, null)
 
-        dialogBuilder.setView(input)
-        dialogBuilder.setCancelable(false)
-        dialogBuilder.setPositiveButton(getString(R.string.save)) { _, _ ->
+        val input: EditText = dialogLayout.findViewById(R.id.listNameInput)
+
+        builder.setView(dialogLayout)
+        builder.setCancelable(false)
+        builder.setPositiveButton(getString(R.string.save)) { _, _ ->
             val listName = input.text.toString()
             val productList = productViewModel.products.value ?: emptyList()
             if (listName.isNotEmpty() && productList.isNotEmpty()) {
                 val shoppingListItems = productList.map { product ->
-                    ShoppingListItem(product.id, product.quantity) // Przykładowa ilość, dostosuj do swoich potrzeb
+                    ShoppingListItem(product.id, product.quantity)
                 }
                 saveProductListToFirebase(listName, shoppingListItems)
             } else {
@@ -70,10 +67,8 @@ class UserFragment : Fragment(R.layout.fragment_user) {
                 Toast.makeText(requireContext(), a, Toast.LENGTH_SHORT).show()
             }
         }
-        dialogBuilder.setNegativeButton(getString(R.string.cancel), null)
-
-        val dialog = dialogBuilder.create()
-        dialog.show()
+        builder.setNegativeButton(getString(R.string.cancel), null)
+        builder.show()
     }
 
     private fun showLoadListDialog() {
