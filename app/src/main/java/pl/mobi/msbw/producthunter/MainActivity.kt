@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import pl.mobi.msbw.producthunter.ui.HomeFragment
 import pl.mobi.msbw.producthunter.ui.ItemListFragment
+import pl.mobi.msbw.producthunter.ui.BarcodeScannerFragment
 import pl.mobi.msbw.producthunter.ui.UserFragment
 
 class MainActivity : AppCompatActivity() {
@@ -15,9 +16,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val firstFragment= HomeFragment()
-        val secondFragment= ItemListFragment()
-        val thirdFragment= UserFragment()
+        val firstFragment = HomeFragment()
+        val secondFragment = ItemListFragment()
+        val thirdFragment = BarcodeScannerFragment()
+        val fourthFragment = UserFragment()
         bottomNavView = findViewById(R.id.bottomNavView)
 
         setCurrentFragment(firstFragment)
@@ -26,7 +28,8 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
                 R.id.menuHome->setCurrentFragment(firstFragment)
                 R.id.menuItemList->setCurrentFragment(secondFragment)
-                R.id.menuUser->setCurrentFragment(thirdFragment)
+                R.id.menuScanner->setCurrentFragment(thirdFragment)
+                R.id.menuUser->setCurrentFragment(fourthFragment)
             }
             true
         }

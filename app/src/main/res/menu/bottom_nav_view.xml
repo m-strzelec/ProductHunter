@@ -9,6 +9,10 @@
         android:title="@string/shoplist_name_TV2"
         android:icon="@drawable/ic_item_list"/>
     <item
+        android:id="@+id/menuScanner"
+        android:title="@string/scanner"
+        android:icon="@drawable/ic_qr_code_scanner"/>
+    <item
         android:id="@+id/menuUser"
         android:title="@string/profil"
         android:icon="@drawable/ic_user"/>

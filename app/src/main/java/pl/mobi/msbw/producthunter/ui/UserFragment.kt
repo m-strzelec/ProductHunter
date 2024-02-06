@@ -68,6 +68,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
             }
         }
         builder.setNegativeButton(getString(R.string.cancel), null)
+        builder.setIcon(android.R.drawable.ic_dialog_info)
         builder.show()
     }
 
@@ -120,6 +121,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
                 builder.setMessage(getString(R.string.shoplist_none))
             }
             builder.setNegativeButton(getString(R.string.cancel), null)
+            builder.setIcon(android.R.drawable.ic_dialog_info)
             builder.show()
         }
     }

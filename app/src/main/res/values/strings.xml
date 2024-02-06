@@ -37,9 +37,6 @@
     <string name="shoplist_name_TV2">Shopping list</string>
     <string name="home" translatable="false">Home</string>
 
-
-
-
     <string-array name="shop_name_list">
         <item>Biedronka</item>
         <item>Lidl</item>
@@ -52,6 +49,7 @@
         <item>Słodycze</item>
         <item>Woda</item>
     </string-array>
+
     <string name="shoplist_save">Shopping list saved successfully</string>
     <string name="product_add_err">Please fill all forms correctlly</string>
     <string name="shoplist_product_add">Product added to shopping list:</string>
@@ -69,4 +67,11 @@
     <string name="shoplist_loaded">Shopping list successfully loaded</string>
     <string name="shoplist_none">No available shopping list</string>
     <string name="enter_name">Enter list name</string>
+    <string name="scanner">Scanner</string>
+    <string name="scan_code">Scan code</string>
+    <string name="capture_failed">Capture failed</string>
+    <string name="permissions_needed">Permissions not granted</string>
+    <string name="scanning_failed">Barcode scanning failed</string>
+    <string name="find_product">Find product online</string>
+    <string name="product_code">Product code: </string>
 </resources>

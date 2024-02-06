@@ -42,9 +42,9 @@ class ProductAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val layoutId = if (chosenCardType == 0) {
-            R.layout.activity_product_list
+            R.layout.item_list_home
         } else {
-            R.layout.item_list_preview
+            R.layout.item_list_shopping
         }
         val itemView = inflater.inflate(layoutId, parent, false)
         return ProductViewHolder(itemView)

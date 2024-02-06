@@ -52,4 +52,11 @@
     <string name="shoplist_loaded">Lista produktów została wczytana</string>
     <string name="shoplist_none">Brak dostępnych list zakupów</string>
     <string name="enter_name">Wprowadź nazwę listy</string>
+    <string name="scanner">Skaner</string>
+    <string name="scan_code">Skanuj kod</string>
+    <string name="capture_failed">Przechwytywanie nie powiodło się</string>
+    <string name="permissions_needed">Nie przyznano uprawnień</string>
+    <string name="scanning_failed">Skanowanie nie powiodło się</string>
+    <string name="find_product">Znajdź produkt online</string>
+    <string name="product_code">Kod produktu :</string>
 </resources>
