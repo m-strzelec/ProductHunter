@@ -24,6 +24,8 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemCli
     private lateinit var productViewModel: ProductViewModel
     private lateinit var productAdapter: ProductAdapter
 
+    private var productsList: List<Product> = emptyList()
+
     private val chosenStoresIndexList = ArrayList<Int>()
 
     private lateinit var viewItemCost:TextView
@@ -45,20 +47,30 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemCli
 
         val productRV = view.findViewById<RecyclerView>(R.id.productRecyclerView)
         productRV.layoutManager = LinearLayoutManager(requireContext())
-        productAdapter = ProductAdapter(emptyList(),1, this)
+        productAdapter = ProductAdapter(1, this)
         productRV.adapter = productAdapter
-
-        productViewModel = ViewModelProvider(requireActivity())[ProductViewModel::class.java]
-        productViewModel.products.observe(viewLifecycleOwner) { products ->
-            productAdapter.updateItems(products)
-            filterProducts()
-        }
 
         viewItemCost = view.findViewById(R.id.viewItemCost)
 
         setAutoCompleteTextView(storeAutoCompleteTV, storesNamesList, selectedStoresList, chosenStoresIndexList)
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        productViewModel = ViewModelProvider(requireActivity())[ProductViewModel::class.java]
+        productViewModel.products.observe(viewLifecycleOwner) { products ->
+            productsList = products
+            productAdapter.submitList(products)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        chosenStoresIndexList.clear()
+        storeAutoCompleteTV.text = null
+        filterProducts()
     }
 
     override fun onDeleteProductClick(product: Product) {
@@ -137,11 +149,11 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemCli
     }
 
     private fun filterProducts() {
-        val filteredProducts = productViewModel.products.value.orEmpty().filter { product ->
+        val filteredProducts = productsList.filter { product ->
             val matchesStore = isMatchingSelection(chosenStoresIndexList, storesNamesList, product.storeName)
             matchesStore
         }
-        productAdapter.updateItems(filteredProducts)
+        productAdapter.submitList(filteredProducts)
         calculatePrice(filteredProducts)
         if (filteredProducts.isEmpty()) {
             val a = getString(R.string.products_not_found_err)

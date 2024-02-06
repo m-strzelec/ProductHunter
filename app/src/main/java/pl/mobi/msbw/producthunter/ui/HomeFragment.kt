@@ -64,7 +64,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnProductItemClickListene
 
         val productRV = view.findViewById<RecyclerView>(R.id.productRecyclerView)
         productRV.layoutManager = LinearLayoutManager(requireContext())
-        productAdapter = ProductAdapter(emptyList(), 0, this)
+        productAdapter = ProductAdapter(0, this)
         productRV.adapter = productAdapter
 
         setAutoCompleteTextView(storeAutoCompleteTV, storesNamesList, selectedStoresList, chosenStoresIndexList)
@@ -94,6 +94,15 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnProductItemClickListene
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        chosenStoresIndexList.clear()
+        chosenCategoriesIndexList.clear()
+        storeAutoCompleteTV.text = null
+        categoryAutoCompleteTV.text = null
+    }
+
+
     override fun onAddToProductListClick(product: Product) {
         if (productViewModel.addProduct(product)) {
             val a = getString(R.string.shoplist_product_add)
@@ -119,7 +128,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnProductItemClickListene
         productsList = products
     }
     private fun onProductsLoaded(products: List<Product>) {
-        productAdapter.updateItems(products)
+        productAdapter.submitList(products)
     }
 
     private fun setAutoCompleteTextView(
@@ -211,7 +220,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), OnProductItemClickListene
             matchesCategory && matchesStore && matchesName
         }
 
-        productAdapter.updateItems(filteredProducts)
+        productAdapter.submitList(filteredProducts)
         if (filteredProducts.isEmpty()) {
             val a = getString(R.string.products_not_found_err)
             Toast.makeText(requireContext(), a, Toast.LENGTH_LONG).show()

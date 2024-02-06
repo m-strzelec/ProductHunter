@@ -6,57 +6,43 @@ import androidx.lifecycle.ViewModel
 import pl.mobi.msbw.producthunter.models.Product
 
 class ProductViewModel : ViewModel() {
-    private val _products = MutableLiveData<List<Product>>()
+    private val _products = MutableLiveData<List<Product>>(mutableListOf())
     private val _loadedProducts = MutableLiveData<List<Product>>()
     val products: LiveData<List<Product>> get() = _products
     val loadedProducts: LiveData<List<Product>> get() = _loadedProducts
-
-    init {
-        _products.value = mutableListOf()
-    }
 
     fun setProducts(newProducts: List<Product>) {
         _products.value = newProducts
     }
 
-    fun setLoadedProducts(products: List<Product>) {
-        _loadedProducts.value = products
+    fun setLoadedProducts(newLoadedProducts: List<Product>) {
+        _loadedProducts.value = newLoadedProducts
     }
 
     fun addProduct(product: Product): Boolean {
-        val currentList = _products.value?.toMutableList() ?: mutableListOf()
-        val existingProduct = currentList.find { it.id == product.id }
-        return if (existingProduct == null) {
-            currentList.add(product)
-            _products.value = currentList
-            true
-        } else {
-            false
-        }
+        val currentList = _products.value ?: mutableListOf()
+        if (currentList.any { it.id == product.id }) return false
+
+        val updatedList = currentList.toMutableList().apply { add(product) }
+        _products.value = updatedList
+        return true
     }
 
     fun removeProduct(product: Product) {
-        val currentList = _products.value?.toMutableList() ?: return
-        currentList.remove(product)
-        _products.value = currentList
+        _products.value = _products.value?.filter { it.id != product.id }
     }
 
     fun incrementQuantity(product: Product) {
-        val currentList = _products.value?.toMutableList() ?: mutableListOf()
-        val updatedProduct = product.copy(quantity = product.quantity + 1)
-        val position = currentList.indexOfFirst { it.id == product.id }
-        if (position != -1) {
-            currentList[position] = updatedProduct
-            _products.value = currentList
-        }
+        updateProductQuantity(product, 1)
     }
+
     fun decrementQuantity(product: Product) {
-        val currentList = _products.value?.toMutableList() ?: mutableListOf()
-        val updatedProduct = product.copy(quantity = product.quantity - 1)
-        val position = currentList.indexOfFirst { it.id == product.id }
-        if (position != -1) {
-            currentList[position] = updatedProduct
-            _products.value = currentList
+        updateProductQuantity(product, -1)
+    }
+
+    private fun updateProductQuantity(product: Product, increment: Int) {
+        _products.value = _products.value?.map {
+            if (it.id == product.id) it.copy(quantity = it.quantity + increment) else it
         }
     }
 }

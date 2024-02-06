@@ -41,9 +41,8 @@ class AddProductActivity : AppCompatActivity() {
                 storeAddress.isNotEmpty() && price != null) {
                 val firebaseManager = FirebaseManager()
                 firebaseManager.addProduct(category, productName, storeName, storeAddress, price)
-                finish() // Zamyka aktywność po dodaniu produktu
+                finish()
             } else {
-                // Obsługa błędnych danych
                 val a = getString(R.string.product_add_err)
                 Toast.makeText(this, a,
                     Toast.LENGTH_SHORT).show()

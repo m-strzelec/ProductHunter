@@ -13,13 +13,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import pl.mobi.msbw.producthunter.R
 import pl.mobi.msbw.producthunter.firebase.FirebaseManager
-import pl.mobi.msbw.producthunter.models.Product
 import pl.mobi.msbw.producthunter.models.ShoppingListItem
 import pl.mobi.msbw.producthunter.viewmodels.ProductViewModel
 
 class UserFragment : Fragment(R.layout.fragment_user) {
 
     private lateinit var productViewModel: ProductViewModel
+    private val firebaseManager = FirebaseManager()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,93 +44,77 @@ class UserFragment : Fragment(R.layout.fragment_user) {
     }
 
     private fun showSaveListDialog() {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(requireActivity())
-        builder.setTitle(getString(R.string.shoplist_name))
+        val dialogView = layoutInflater.inflate(R.layout.dialog_save_list, null)
+        val input: EditText = dialogView.findViewById(R.id.listNameInput)
 
-        val inflater = requireActivity().layoutInflater
-        val dialogLayout = inflater.inflate(R.layout.dialog_save_list, null)
-
-        val input: EditText = dialogLayout.findViewById(R.id.listNameInput)
-
-        builder.setView(dialogLayout)
-        builder.setCancelable(false)
-        builder.setPositiveButton(getString(R.string.save)) { _, _ ->
-            val listName = input.text.toString()
-            val productList = productViewModel.products.value ?: emptyList()
-            if (listName.isNotEmpty() && productList.isNotEmpty()) {
-                val shoppingListItems = productList.map { product ->
-                    ShoppingListItem(product.id, product.quantity)
-                }
-                saveProductListToFirebase(listName, shoppingListItems)
-            } else {
-                val a = getString(R.string.shoplist_filter_name_err)
-                Toast.makeText(requireContext(), a, Toast.LENGTH_SHORT).show()
+        AlertDialog.Builder(requireContext())
+            .setTitle(getString(R.string.shoplist_name))
+            .setView(dialogView)
+            .setCancelable(false)
+            .setPositiveButton(getString(R.string.save)) { _, _ ->
+                val listName = input.text.toString()
+                saveCurrentProductList(listName)
             }
+            .setNegativeButton(getString(R.string.cancel), null)
+            .setIcon(android.R.drawable.ic_dialog_info)
+            .show()
+    }
+
+    private fun saveCurrentProductList(listName: String) {
+        if (listName.isEmpty()) {
+            Toast.makeText(requireContext(), getString(R.string.shoplist_filter_name_err), Toast.LENGTH_SHORT).show()
+            return
         }
-        builder.setNegativeButton(getString(R.string.cancel), null)
-        builder.setIcon(android.R.drawable.ic_dialog_info)
-        builder.show()
+        val productList = productViewModel.products.value ?: emptyList()
+        if (productList.isEmpty()) {
+            Toast.makeText(requireContext(), getString(R.string.shoplist_filter_name_err), Toast.LENGTH_SHORT).show()
+            return
+        }
+        val shoppingListItems = productList.map { ShoppingListItem(it.id, it.quantity) }
+        firebaseManager.saveProductList(listName, shoppingListItems)
+        Toast.makeText(requireContext(), getString(R.string.shoplist_save), Toast.LENGTH_SHORT).show()
     }
 
     private fun showLoadListDialog() {
-        val builder: AlertDialog.Builder = AlertDialog.Builder(requireActivity())
-        builder.setTitle(getString(R.string.shoplist_choose))
-
-        val shoppingLists = mutableListOf<String>()
-        val firebaseManager = FirebaseManager()
-
         firebaseManager.getShoppingListsNames { lists ->
-            shoppingLists.addAll(lists)
-
-            if (shoppingLists.isNotEmpty()) {
-                val inflater = requireActivity().layoutInflater
-                val dialogLayout = inflater.inflate(R.layout.dialog_load_list, null)
-
-                val spinner: Spinner = dialogLayout.findViewById(R.id.spinner)
-                val adapter = ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, shoppingLists)
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spinner.adapter = adapter
-
-                builder.setView(dialogLayout)
-                builder.setCancelable(false)
-                builder.setPositiveButton(getString(R.string.confirm)) { _, _ ->
-                    val selectedListName = spinner.selectedItem as String
-                    firebaseManager.getShoppingListProducts(selectedListName) { productsWithQuantity ->
-                        val homeProducts = productViewModel.loadedProducts.value.orEmpty()
-                        val foundProducts: List<Product> = homeProducts.filter { product ->
-                            product.id in productsWithQuantity.keys
-                        }
-                        val updatedProducts = foundProducts.map { product ->
-                            val quantity = productsWithQuantity[product.id] ?: 0
-                            Product(
-                                product.id,
-                                product.category,
-                                product.name,
-                                product.price,
-                                quantity,
-                                product.storeName,
-                                product.storeAddress
-                            )
-                        }
-                        productViewModel.setProducts(updatedProducts)
-                    }
-                    val a = getString(R.string.shoplist_loaded)
-                    Toast.makeText(requireContext(), a, Toast.LENGTH_SHORT).show()
-                }
-            } else {
-                builder.setMessage(getString(R.string.shoplist_none))
+            if (lists.isEmpty()) {
+                Toast.makeText(requireContext(), getString(R.string.shoplist_none), Toast.LENGTH_SHORT).show()
             }
-            builder.setNegativeButton(getString(R.string.cancel), null)
-            builder.setIcon(android.R.drawable.ic_dialog_info)
-            builder.show()
+            else {
+                val dialogView = layoutInflater.inflate(R.layout.dialog_load_list, null)
+                val spinner: Spinner = dialogView.findViewById(R.id.spinner)
+                setupSpinner(spinner, lists)
+
+                AlertDialog.Builder(requireContext())
+                    .setTitle(getString(R.string.shoplist_choose))
+                    .setView(dialogView)
+                    .setPositiveButton(getString(R.string.confirm)) { _, _ ->
+                        loadSelectedProductList(spinner.selectedItem.toString())
+                    }
+                    .setNegativeButton(getString(R.string.cancel), null)
+                    .setIcon(android.R.drawable.ic_dialog_info)
+                    .show()
+            }
         }
     }
 
-
-    private fun saveProductListToFirebase(listName: String, itemList: List<ShoppingListItem>) {
-        val firebaseManager = FirebaseManager()
-        firebaseManager.saveProductList(listName, itemList)
-        val a = getString(R.string.shoplist_save)
-        Toast.makeText(requireContext(), a, Toast.LENGTH_SHORT).show()
+    private fun setupSpinner(spinner: Spinner, shoppingLists: List<String>) {
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, shoppingLists).apply {
+            setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        }
+        spinner.adapter = adapter
     }
+
+    private fun loadSelectedProductList(listName: String) {
+        firebaseManager.getShoppingListProducts(listName) { productsWithQuantity ->
+            val updatedProducts = productViewModel.loadedProducts.value.orEmpty().mapNotNull { product ->
+                productsWithQuantity[product.id]?.let { quantity ->
+                    product.copy(quantity = quantity)
+                }
+            }
+            productViewModel.setProducts(updatedProducts)
+            Toast.makeText(requireContext(), getString(R.string.shoplist_loaded), Toast.LENGTH_SHORT).show()
+        }
+    }
+
 }

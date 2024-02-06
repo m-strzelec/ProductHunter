@@ -57,6 +57,7 @@
     <string name="capture_failed">Przechwytywanie nie powiodło się</string>
     <string name="permissions_needed">Nie przyznano uprawnień</string>
     <string name="scanning_failed">Skanowanie nie powiodło się</string>
-    <string name="find_product">Znajdź produkt online</string>
-    <string name="product_code">Kod produktu :</string>
+    <string name="find_product">Znajdź produkt w sieci</string>
+    <string name="product_code">Kod produktu: </string>
+    <string name="no_code_found">Nie znaleziono kodu na obrazku</string>
 </resources>
