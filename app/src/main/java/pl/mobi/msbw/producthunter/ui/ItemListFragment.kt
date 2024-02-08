@@ -32,7 +32,7 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemCli
     private lateinit var storesNamesList: Array<String>
     private lateinit var selectedStoresList: BooleanArray
     private lateinit var storeAutoCompleteTV: AutoCompleteTextView
-
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -63,6 +63,7 @@ class ItemListFragment : Fragment(R.layout.fragment_item_list), OnProductItemCli
         productViewModel.products.observe(viewLifecycleOwner) { products ->
             productsList = products
             productAdapter.submitList(products)
+            filterProducts()
         }
     }
 
